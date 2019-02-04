@@ -1,0 +1,1361 @@
+\documentclass[xcolor=dvipsnames, aspectratio=1610]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,lmodern} % nice T1 compatible fonts
+\usepackage[UKenglish]{babel}
+\usepackage{pdfpages} % to import pdf pages
+\usepackage{ragged2e} % pour justifier le text, après il suffit de tapper \justifying avant le paragraphe
+\usepackage{subcaption} % for captions below figures
+\usepackage{eurosym} % for euro sign
+
+\setbeamertemplate{navigation symbols}{}%no nav symbols
+\usetheme[secheader]{Madrid}%
+
+\title{Getting started with R}
+\author[IZW]{Alexandre Courtiol \& Liam Bailey}
+\institute[]{Leibniz Institute of Zoo and Wildlife Research}%
+\titlegraphic{
+\vspace{0cm}
+\centering
+\includegraphics[height=2cm]{figures/izw_logo}
+\hspace{2cm}
+\includegraphics[height=2cm]{figures/FU}
+}
+\date[February 2019]{\small February 2019}%
+
+\begin{document}
+
+\setlength{\topsep}{1pt} % space between input and output
+
+<<knitr options, echo = FALSE, message = FALSE>>=
+options(width = 60)
+library(knitr)
+opts_chunk$set("error" = TRUE)
+@
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{What is R?}
+\justifying
+{\Large \bf R} is a {\bf free open source} programming language and software environment for statistical computing \& graphics.
+\vfill
+R includes {\bf long-established parametric and non-parametric tests}, forefront methods in regression, classification \& clustering, and much more.
+\vfill
+There are many thousands {\bf R packages} out there for you to do even more.
+\vfill
+The user can run workflows stored in one or several script file(s) (or R Markdown notebooks), which allows for  automation, {\bf reproducible research \& easy communication}.
+\end{frame}
+
+{
+\setbeamercolor{background canvas}{bg=}
+\includepdf[pages={6,7}]{figures/Rexer2017.pdf}
+}
+
+\begin{frame}{Is R good for you?}
+\begin{columns}
+\column[t]{0.4\linewidth}
+\begin{block}{Good for:}
+\begin{itemize}
+  \item statistical analyses
+  \item data manipulation
+  \item small, medium and big data
+  \item plots, including GIS
+  \item programming around data
+\end{itemize}
+\end{block}
+\pause
+\column[t]{0.4\linewidth}
+\begin{block}{Not optimal for:}
+\begin{itemize}
+  \item beginners
+  \item data entry
+  \item formal algebra
+\end{itemize}
+\end{block}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{Getting started with R}
+  \setcounter{tocdepth}{1}
+  \tableofcontents
+\end{frame}
+
+\section{Installing R}
+\begin{frame}{Getting started with R}
+  \setcounter{tocdepth}{1}
+  \tableofcontents[currentsection]
+\end{frame}
+
+
+\begin{frame}{Installation steps}
+  \begin{enumerate}
+  \item connect to the WIFI network \texttt{izw-gast} (check password on board)
+  \item set the internet proxy: 192.168.2.2:3128 (necessary at IZW, but usually not)
+  \item check that you do get internet access
+  \item install R: \url{https://cran.r-project.org/}
+  \item install RStudio: \url{https://www.rstudio.com/products/rstudio/download/}
+  \item open RStudio
+  \end{enumerate}
+\vfill
+Note: I will use RStudio but you don't have to (RStudio is free and open source).
+\end{frame}
+
+
+\begin{frame}{RStudio}
+\begin{center}
+\includegraphics[height=0.9\textheight]{figures/RStudio.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{Better default settings for RStudio}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/RStudio_settings.png}
+\end{center}
+\end{frame}
+
+
+\section{Basics}
+\begin{frame}{Getting started with R}
+  \setcounter{tocdepth}{1}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}[t, fragile]{The concept of an R script}
+All instructions should be written as a computer script!
+\begin{itemize}
+\item it is just a text file (no need for R to read it, it never gets corrupted)
+\item the script must be saved at a known location
+\item all non-R instructions must be preceded by the character \textbf{\#}
+\end{itemize}
+
+\vfill
+
+\pause
+<<"size" = "scriptsize">>=
+###############################
+## this is my first R script ##
+###############################
+
+### simple arithmetic
+1 + 1 ## compute 1 + 1
+#1 + 2 ## commented lines of code won't run!
+@
+
+\vfill
+\pause
+Why bother writing a script?
+\begin{itemize}
+\item transparent \& reproducible
+\item easy to share \& modify
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Good practice}
+\begin{enumerate}
+\item only use the ``Console'' panel to mess around
+\item write a script and comment it thoroughly
+\item \textbf{make sure your script always works by re-running the whole script often!}
+\end{enumerate}
+\vfill
+\pause
+Alternatives for you to explore in the future:
+\begin{itemize}
+\item You can use R Notebooks or R Markdown files instead of a simple script:\\ RStudio: File $\rightarrow$ New File (but it needs packages, so don't try before we set internet up!)\\
+\pause
+\vspace{0.3em}
+Using such documents offers the possibility to easily combine formatted text, embedded R code and outputs. Such documents can be rendered into HTML, PDF, Microsoft Office Word and Powerpoints formats, and more.\\ (see \url{https://rmarkdown.rstudio.com/} for details)
+\pause
+\item If you know \LaTeX, you can also integrate your R code within \LaTeX \ documents.\\ (I created those slides that way)
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{R as a calculator}
+Try in the following:
+<<arithmetic>>=
+1 + 1
+1 - 1
+2 * pi
+3 / 2
+5^(2 + 1)
+10 %% 3
+@
+\end{frame}
+
+
+\begin{frame}[fragile]{Creating objects}
+Information can be stored into \emph{objects} which are being created using the ``arrow'' operator:
+<<one plus one>>=
+one.plus.one <- 1 + 1 ## storing the result
+@
+\pause
+\vfill
+
+Once created, objects are used via their name (that is the whole point):
+
+<<display one plus one>>=
+one.plus.one ## displaying the result
+one.plus.one.plus.one <- one.plus.one + 1
+one.plus.one.plus.one
+@
+\vfill
+\pause
+Note 1: avoid spaces \& weird characters (but ``\texttt{\_}'' and ``\texttt{.}'' are OK).
+
+Note 2: names are case sensitive.
+\end{frame}
+
+
+\begin{frame}[fragile]{Common mistakes}
+<<errors, tidy=F, size="small">>=
+one.plus.one
+one.plus.two
+One.plus.one
+one.plusone
+1 +
+one.plus.one <- 1 + 1
+@
+\end{frame}
+
+\begin{frame}[fragile]{Functions}
+<<eval=F>>=
+citation()  # function showing how to cite R
+@
+<<eval=T,echo=F, size="tiny">>=
+citation()
+@
+<<eval=F,tidy=F>>=
+?citation() # getting help for this function
+@
+\end{frame}
+
+
+\begin{frame}[fragile]{Functions}
+<<eval=F, echo=T>>=
+mean()
+@
+<<eval=F, tidy=F>>=
+?mean()
+@
+\begin{scriptsize}
+\begin{verbatim}
+Usage:
+     mean(x, ...)
+     ## Default S3 method:
+     mean(x, trim = 0, na.rm = FALSE, ...)
+     
+Arguments:
+       x: An R object.  Currently there are methods for numeric/logical
+          vectors and date, date-time and time interval objects, and
+          for data frames all of whose columns have a method.  Complex
+          vectors are allowed for ‘trim = 0’, only.
+    trim: the fraction (0 to 0.5) of observations to be trimmed from
+          each end of ‘x’ before the mean is computed.  Values of trim
+          outside that range are taken as the nearest endpoint.
+   na.rm: a logical value indicating whether ‘NA’ values should be
+          stripped before the computation proceeds.
+[...]
+\end{verbatim}
+\end{scriptsize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Functions}
+<<eval=T>>=
+mean(x = c(1, 5, 3, 4))
+vector.of.numbers <- c(1, 5, 3, 4)
+mean(x = vector.of.numbers)
+mean(vector.of.numbers)
+mean(y = vector.of.numbers)
+@
+\end{frame}
+
+\begin{frame}[fragile]{Challenge \#1}
+<<>>=
+new.vector <- c(vector.of.numbers, 6, NA, 2)
+new.vector
+@
+\vfill
+\begin{large}
+\begin{center}
+Try to compute the mean of  \texttt{new.vector} using \texttt{mean()}!
+\end{center}
+\end{large}
+\end{frame}
+% 
+% \begin{frame}[fragile]{Key principles of the R language}
+% \begin{itemize}
+% \item Everything that exists in R is an object
+% \item Everything that happens in R is a function call
+% \end{itemize}
+% 
+% \begin{flushright}
+% John M. Chambers
+% \end{flushright}
+% 
+% \vspace{1em}
+% This is true even for things that do not look like it at first glance:
+% <<>>=
+% class(`+`)  # same for `?`...
+% `+`(1, 1)
+% @
+% \end{frame}
+
+
+\begin{frame}[fragile]{R packages}
+
+Packages extend R functionalities:
+\begin{itemize}
+\item for most users; e.g. \verb+ggplot2+
+\item for specific users; e.g. \verb+IsoriX+
+\item for developers; e.g. \verb+Rcpp+
+\end{itemize}
+
+\vfill
+\pause
+Key facts about packages:
+\begin{itemize}
+\item a package is just a folder (often compressed) containing R functions, data \& documentation
+\item a library is the installed version of the package (also a folder)
+\item there are tons of packages out there:
+\begin{itemize}
+\item \Sexpr{nrow(available.packages(contriburl="https://cran.rstudio.com/src/contrib"))} packages are available on \url{cran.r-project.org}
+\item $\sim$ 1500 packages aimed at bioinformatics on \url{bioconductor.org}
+\item many more on \url{github.com}
+\item many more shared between users in other ways
+\end{itemize}
+\end{itemize}
+
+\vfill
+\pause
+Note: packages can be used to create research compendia!
+\end{frame}
+
+
+%\begin{frame}[fragile]{Creating your own package is actually quite easy (once you know R)}
+%\begin{center}
+%\includegraphics[height = 0.9\textheight]{figures/Wickham_RPackages}
+%\end{center}
+%\end{frame}
+
+
+\begin{frame}[fragile]{Installing a package}
+
+Simple situation (outside IZW): the package is available as a binary file prepared for your system on CRAN
+<<install_package, eval=FALSE>>=
+install.packages("coin")  ## install coin
+@
+
+\vfill
+\pause
+In general, the installation procedure depends on:
+\begin{itemize}
+\item where the package is being hosted (local, CRAN, bioconductor, GitHub, other)
+\item if the package contains sources in another language that have been compiled or not
+\end{itemize}
+
+\vfill
+\pause
+In order to be able to install packages that require compilation (and thus have access to more packages or more rencent versions), you need to install:
+
+\begin{itemize}
+\item Rtools if you use Windows (\url{https://cran.r-project.org/bin/windows/Rtools/})
+\item Xcode if you use macOS (\url{https://developer.apple.com/xcode/})
+\item nothing if you use Linux or other Unix-based system
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Installing a package to check IZW proxy settings in RStudio}
+<<eval=FALSE>>=
+install.packages("coin") # dialog box may be behind!
+@
+If it does not work follow one of the following options and try again!
+\begin{itemize}
+\item create or edit the file \texttt{.Renviron}:
+<<eval = FALSE>>=
+file.edit("~/.Renviron")
+@
+\item add to this file the following lines:
+
+\url{http_proxy=http://192.168.2.2:3128/}
+
+\url{https_proxy=http://192.168.2.2:3128/}
+\end{itemize}
+\vfill
+Note: at home, just delete the file, rename it or comment the lines inside it!
+\end{frame}
+
+\begin{frame}[fragile]{Loading a library}
+That is always simple:
+<<>>=
+library(coin)
+@
+\vfill
+Contrary to the installation that is only needed once per R installation, loading the libraries you need must be done each time you open an R session!
+\end{frame}
+
+
+\begin{frame}[fragile]{Updating packages}
+Some things to know:
+\begin{itemize}
+\item R packages evovle quickly
+\item young R packages can be very buggy
+\item packages are not reviewed\\ (CRAN tests that they can install and that the examples run without generating error or warning messages)
+\end{itemize}
+\vfill
+\pause
+Good practice:
+\begin{itemize}
+\item update your R packages frequently (I do it daily)
+\end{itemize}
+<<update, eval = FALSE>>=
+update.packages(ask = FALSE, checkBuilt = TRUE) ## or use the RStudio menu
+@
+\end{frame}
+
+
+\begin{frame}[fragile]{Updating R itself}
+Some things to know:
+\begin{itemize}
+\item R has many bugs (like all other software)
+\item R bugs are reported, discussed and solved in the open (unlike most other software): \url{https://bugs.r-project.org/bugzilla3/}
+\item each new version of R is more efficient and less buggy
+\end{itemize}
+
+\vfill
+\pause
+What to do?
+\begin{itemize}
+\item check and install new versions of R using CRAN
+\item re-install all your packages
+\end{itemize}
+
+\vfill
+Note 1: some packages can help to do this: \verb+InstallR+ on Windows and \verb+UpdateR+ on macOS.\\
+\vspace{1em}
+Note 2: also update RStudio regularly for the same reasons.
+\end{frame}
+
+
+\section{Organising data}
+\begin{frame}{Getting started with R}
+  \setcounter{tocdepth}{1}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}[fragile]{Vectors}
+Vectors allow the organisation of entities (e.g. numbers, characters\dots) along one dimension which can be indexed!
+\vfill
+<<heights>>=
+height.girls <- c(178, 175, 159, 164, 183, 172)
+height.boys  <- c(181, 175, 174, 174)
+@
+
+<<>>=
+height.girls[2]
+height.boys[3]
+@
+\end{frame}
+
+\begin{frame}[fragile]{Vectors}
+Vectors can be combined:
+\vspace{1em}
+
+<<>>=
+height <- c(height.girls, height.boys)
+height
+@
+\end{frame}
+
+\begin{frame}[fragile]{Vectors}
+They can be indexed logically (i.e. indexed by anything leading to a vector of booleans):
+\vfill
+<<logical>>=
+height[height > 179]
+@
+<<>>=
+height > 179
+@
+<<>>=
+height[!(height == min(height))]
+height[height != min(height)]
+@
+\end{frame}
+
+\begin{frame}[fragile]{Vectors}
+They work with other things than numbers:
+<<tidy=F>>=
+sex <- c("girl","girl","girl","girl","girl", "girl",
+         "boy","boy","boy","boy")
+sex <- factor(sex)
+sex
+@
+
+<<>>=
+# Or
+sex <- factor(c(rep("girl", times = 6),
+                rep("boy",  times = 4)))
+# Or
+sex <- factor(c(rep("girl", times = length(height.girls)),
+                rep("boy",  times = length(height.boys))))
+@
+\end{frame}
+
+\begin{frame}[fragile]{Vectors}
+Many functions can take a vector as an input:
+\begin{columns}
+\column[t]{0.5\linewidth}
+<<>>=
+unique(sex)
+length(sex)
+table(sex)
+@
+\column[t]{0.5\linewidth}
+<<>>=
+min(height)  
+max(height)  # try range()
+mean(height)  # try median()
+var(height) # try sd()
+@
+\end{columns}
+<<>>=
+summary(height)
+@
+\end{frame}
+
+\begin{frame}[fragile]{Data frames}
+Data frames allow the organisation of entities as a matrix-like structure whose columns are vectors of the same length:
+\vspace{1em}
+<<>>=
+dataframe.ht <- data.frame(Height = height, Sex = sex)
+head(dataframe.ht)
+@
+\end{frame}
+
+\begin{frame}[fragile]{Data frames}
+It is good practice to always check the structure of data frames:
+\vspace{1em}
+<<>>=
+str(dataframe.ht)
+@
+\end{frame}
+
+\begin{frame}[fragile]{Data frames}
+You access the columns by means of the extractor \texttt{\$}
+\vspace{1em}
+<<>>=
+height
+rm(list = c("height", "sex")) # removing original vectors
+height
+dataframe.ht$Height #Or: with(data = dataframe.ht, Height)
+@
+\vfill
+\begin{center}
+\textcolor{purple}{$\Rightarrow$ What is the average height?}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Data frames}
+Some functions can take a data frame as an input:
+\vfill
+<<>>=
+summary(dataframe.ht)
+@
+\vfill
+Note: this will be the case of a lot of functions performing statistical tests!
+\end{frame}
+
+\begin{frame}[fragile]{Data frames}
+How to compute the average height per sex?
+\vfill
+\begin{itemize}
+\item simple
+<<>>=
+mean(dataframe.ht$Height[dataframe.ht$Sex == "boy"])
+@
+\item more elegant
+<<>>=
+tapply(X = dataframe.ht$Height, INDEX = dataframe.ht$Sex, FUN = mean)
+# Or: with(data = dataframe.ht, tapply(X = Height, INDEX = Sex, FUN = mean))
+@
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Data frames}
+The package \texttt{dplyr} can be used to manipulate data frames (\& \texttt{tibbles}; their kissing cousins) very effectively.
+\vspace{1em}
+
+<<message = FALSE>>=
+library(dplyr)
+
+dataframe.ht %>% # the weird operator is a forward pipe, see ?magrittr::`%>%`
+  group_by(Sex) %>%
+  summarise(Mean_height = mean(Height), N = n()) %>%
+  data.frame()
+@
+
+\pause
+It works similarly on data stored in relational database management system (e.g. MySQL, SQLite, MariaDB, Postgres...) using \texttt{dbplyr}.
+\end{frame}
+
+
+\begin{frame}[fragile]{To learn more about the tidyverse (i.e. dplyr and related packages)}
+\begin{center}
+\begin{figure}
+\begin{center}
+\begin{subfigure}[b]{15cm}
+\centering
+\includegraphics[height = 6cm]{figures/Wickham_r4ds}
+\caption*{free at \url{https://r4ds.had.co.nz} or $\sim 28$\euro \ for the printed book}
+\end{subfigure}
+\end{center}
+\end{figure}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]{Data frames}
+Data frames can also be indexed:
+\vspace{1em}
+<<>>=
+dataframe.ht[1, ]
+dataframe.ht[, 1]  # Or: dataframe.ht[, "Sex"]
+@
+\end{frame}
+
+\begin{frame}[fragile]{Data frames}
+They can be edited:
+\vspace{1em}
+<<>>=
+dataframe.ht[1, 1]
+dataframe.ht[1, 1] <- 171.3
+dataframe.ht[1, 1]
+dataframe.ht$linenumber <- 1:nrow(dataframe.ht)  # add column
+ncol(dataframe.ht) # try dim()
+dataframe.ht$linenumber <- NULL  # remove column
+ncol(dataframe.ht)
+@
+\end{frame}
+
+\begin{frame}[fragile]{Lists}
+Lists allow the organisation of any set of entities into a single R object:
+\vspace{1em}
+<<>>=
+list.ht <- list(girls = height.girls, boys = height.boys)
+list.ht
+@
+\end{frame}
+
+\begin{frame}[fragile]{Lists}
+Lists can also be indexed and their elements extracted:
+\vspace{1em}
+<<>>=
+list.ht$girls
+list.ht["boys"]  # still a list
+list.ht[["boys"]]  # vector
+list.ht[[2]][3]
+@
+\end{frame}
+
+\begin{frame}[fragile]{Lists}
+Some functions can take a list as an input:
+\vspace{1em}
+<<>>=
+lapply(list.ht, FUN = mean)
+@
+\end{frame}
+
+\begin{frame}[fragile]{Summary}
+\begin{columns}
+\column[t]{0.3\linewidth}
+<<>>=
+dataframe.ht
+@
+\column[t]{0.3\linewidth}
+<<>>=
+list.ht
+@
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Summary}
+  \begin{itemize}
+  \item \texttt{data.frame}
+  \vfill
+  \begin{itemize}
+    \item All columns have same length
+    \item Each column can have its own class (e.g. \texttt{numeric}, \texttt{factor}, \texttt{character})
+  \end{itemize}
+  \vfill
+  \item \texttt{list}
+  \vfill
+  \begin{itemize}
+    \item Each element can have its own length
+    \item Each element can have its own class (e.g. \texttt{numeric}, \texttt{factor}, \texttt{character})
+  \end{itemize}
+  \vfill
+  \end{itemize}
+\end{frame}
+
+% \begin{frame}[fragile]{Summary}
+% \begin{columns}
+% \column[t]{0.5\linewidth}
+% <<>>=
+% class(dataframe.ht)
+% class(list.ht)
+% @
+% \column[t]{0.5\linewidth}
+% <<>>=
+% # vectors:
+% class(height.girls)
+% class(list.ht$girls)
+% class(dataframe.ht$Sex)
+% @
+% \end{columns}
+% \end{frame}
+
+\section{Importing/exporting data}
+\begin{frame}{Getting started with R}
+  \setcounter{tocdepth}{1}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}[fragile]{Working directory}
+Working with the working directory in R:
+<<>>=
+getwd()                 # to change, use setwd()
+head(dir())             # listing first 6 files in the working directory
+dir(pattern = "*.csv")  # list only csv files
+@
+You can also use RStudio for that and setting up a "Project" may help!\\ File $\rightarrow$ New Project...
+\end{frame}
+
+\begin{frame}[fragile]{Exporting and importing data in R}
+<<tidy=F, eval = FALSE>>=
+write.csv(dataframe.ht, file = "my.first.R.dataframe.csv", row.names = FALSE)
+
+rm(list = ls())  # deleting everything in R
+
+dataframe.ht <- read.csv("my.first.R.dataframe.csv")
+@
+\begin{center}
+\begin{minipage}{0.8\linewidth}
+\begin{block}{}
+\begin{center}
+R cannot read/write \*.xls files out of the box!\\
+Packages can do that (e.g. \texttt{readxl}),\\ but it is easy (and 100\% reliable) to use \*.csv files.\\
+Excel can read and write \*.csv files!\\
+\vspace{1em}
+\textbf{Note:} if you do use \texttt{readxl}, it creates a \texttt{tibble} and not a \texttt{data.frame}, so factors won't be created which is problematic for some analyses.\\ So, don't forget to convert characters variables to factors using \texttt{factor()}.
+\end{center}
+\end{block}
+\end{minipage}
+\end{center}
+\vfill
+\end{frame}
+
+\begin{frame}[b]{Challenge \#2}
+\begin{large}
+\begin{center}
+Create a dataframe using your favourite spreadsheet software\\ and import it in R!
+\end{center}
+\end{large}
+
+\vfill
+\textbf{Note:} RStudio can help you: File $\rightarrow$ Import Dataset $\rightarrow$ From Text (base)
+\end{frame}
+
+\section{Plotting}
+\begin{frame}{Getting started with R}
+  \setcounter{tocdepth}{1}
+  \tableofcontents[currentsection]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Graphics paradigms in R}
+They are three main graphics paradigms in R:
+\begin{itemize}
+\item traditional graphics (based on \verb`graphics`), which we will briefly study
+\item \verb`lattice` (based on \verb`grid`), which is powerful but complex
+\item \verb`ggplot2` (based on \verb`grid`, from RStudio people), which is now very popular
+\end{itemize}
+\vfill
+\pause
+
+\begin{columns}
+\column[b]{0.32\linewidth}
+<<baseplot_eg, out.width = "0.7\\linewidth", out.height = "0.7\\linewidth", size = "tiny">>=
+plot(Petal.Length ~ Petal.Width,
+     data = iris)
+@
+\column[b]{0.32\linewidth}
+<<lattice_eg, out.width = "0.7\\linewidth", out.height = "0.7\\linewidth", size = "tiny">>=
+library(lattice)
+
+xyplot(Petal.Length ~ Petal.Width,
+       data = iris)
+@
+\column[b]{0.32\linewidth}
+<<ggplot_eg, out.width = "0.7\\linewidth", out.height = "0.7\\linewidth", message = FALSE, size = "tiny">>=
+library(ggplot2)
+
+ggplot(data = iris,
+  aes(x = Petal.Width, y = Petal.Length)) +
+  geom_point()
+@
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Foreplay}
+First, let's create a new column \texttt{Age} in our set \texttt{dataframe.ht}:
+\vfill
+<<tidy=F>>=
+dataframe.ht$Age <- c(28, 25, 33, 34, 28, 36, 31, 28, 27, 27)
+head(dataframe.ht)
+@
+\begin{center}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Scatter plot}
+<<fig1_plot, fig.width=4, fig.height=4,include=F>>=
+palette(c("blue", "pink")) ## same order as in levels(dataframe.ht$Sex)
+plot(Height ~ Age, data = dataframe.ht, col = Sex)
+@
+<<tidy=F, eval=F>>=
+palette(c("blue", "pink")) ## same order as in levels(dataframe.ht$Sex)
+plot(Height ~ Age, data = dataframe.ht, col = Sex)
+
+@
+\vspace{-1.5cm}
+\begin{center}
+\includegraphics[width=0.55\linewidth]{./figure/fig1_plot-1.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Scatter plot}
+<<eval=F, tidy=F>>=
+?plot.default
+?par # to set graphical parameters 
+@
+<<echo=FALSE>>=
+options(width = 50)
+@
+<<fig2_plot, fig.width=4, fig.height=4,include=F>>=
+plot(Height ~ Age, data = dataframe.ht, col= Sex,
+    pch=3, xlab="Age", ylab="Height [cm]", 
+    cex=3, cex.lab=1.2, cex.axis=0.5,
+    las=2, col.axis="blue")
+@
+<<tidy=F, eval=F>>=
+plot(Height ~ Age, data = dataframe.ht, col = Sex,
+    pch = 3, xlab = "Age", ylab = "Height [cm]", 
+    cex = 3, cex.lab = 1.2, cex.axis = 0.5,
+    las = 2, col.axis = "blue")
+@
+\vspace{-0.8cm}
+\begin{center}
+\includegraphics[width=0.4\linewidth]{./figure/fig2_plot-1.pdf}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]{Decorating plots}  
+Drawing lines (h = horizontal, v = vertical, or ``intercept, slope''):
+<<tidy=F, eval=F>>=
+?abline
+?text
+@
+<<fig3_plot, fig.width=4, fig.height=4,include=F>>=
+plot(Height ~ Age, data = dataframe.ht, col = Sex)
+abline(v = 30, lty = "dashed", col = "red")
+abline(h = 175, lty = "dotted")
+@
+<<tidy=F, eval=F>>=
+plot(Height ~ Age, data = dataframe.ht, col = Sex)
+abline(v = 30, lty = "dashed", col = "red") #lty = line type
+abline(h = 175, lty = "dotted")
+@
+\vspace{-0.8cm}
+\begin{center}
+\includegraphics[width=0.45\linewidth]{./figure/fig3_plot-1.pdf}
+\end{center}
+\end{frame}
+
+
+% Steph 4
+\begin{frame}[fragile]{Decorating plots}
+Drawing arrows and adding text:
+<<eval=F, tidy=F>>=
+?arrows
+?text
+@
+<<fig4_plot, fig.width=4, fig.height=4,include=F>>=
+plot(Height ~ Age, data = dataframe.ht, col = Sex, pch = 16, cex = 3, ylim = c(150, 200))
+max.value <- max(x=dataframe.ht$Height)
+where.max <- dataframe.ht$Age[which.max(x=dataframe.ht$Height)]
+arrows(x0=where.max, y0=max.value - 18,
+       x1=where.max,  y1 = max.value, col="black", lwd=3) #lwd=line width
+text(x=where.max, y=max.value - 20, labels="Max")
+options(width=100)
+@
+<<tidy=F, eval=F, size="scriptsize">>=
+plot(Height ~ Age, data = dataframe.ht, col = Sex, pch = 16, cex = 3, ylim = c(150, 200))
+max.value <- max(x = dataframe.ht$Height)
+where.max <- dataframe.ht$Age[which.max(x = dataframe.ht$Height)]
+arrows(x0 = where.max, y0 = max.value - 18,
+       x1 = where.max,  y1 = max.value, col = "black", lwd = 3) #lwd = line width
+text(x = where.max, y = max.value - 20, labels = "Max")
+@
+\vspace{-0.9cm}
+\begin{center}
+\includegraphics[width=0.4\linewidth]{./figure/fig4_plot-1.pdf}
+\end{center}
+\end{frame}
+
+% Steph 5a
+\begin{frame}[fragile]{Box plots and histograms}
+<<fig5_plot, fig.width=8, fig.height=4,include=F>>=
+par(mfrow = c(1, 2))
+boxplot(Height ~ Sex, data = dataframe.ht)
+hist(dataframe.ht$Height)
+@
+<<tidy=F, eval=F>>=
+par(mfrow = c(1, 2))
+boxplot(Height ~ Sex, data = dataframe.ht)
+hist(dataframe.ht$Height)
+@
+\begin{center}
+\includegraphics[width=0.75\linewidth]{./figure/fig5_plot-1.pdf}
+\end{center}
+\end{frame}
+
+
+% Steph 6
+\begin{frame}[fragile]{Histograms}
+<<eval=F, tidy=F>>=
+?hist
+@
+<<tidy=F, eval=F, size="scriptsize">>=
+par(mfrow = c(1, 4))
+hist(dataframe.ht$Height, breaks = max)
+hist(dataframe.ht$Height, breaks = 3)
+hist(dataframe.ht$Height, breaks = 5)
+hist(dataframe.ht$Height, breaks = seq(from = 150, to = 200, by = 10), freq = FALSE, col = "lightgrey")
+@
+
+<<fig6_plot, fig.width=12, fig.height=4, include=F>>=
+par(mfrow = c(1, 4))
+hist(dataframe.ht$Height, breaks = max)
+hist(dataframe.ht$Height, breaks = 3)
+hist(dataframe.ht$Height, breaks = 5)
+hist(dataframe.ht$Height, breaks = seq(from = 150, to = 200, by = 10), freq = FALSE, col = "lightgrey")
+@
+\begin{center}
+\includegraphics[width=0.9\linewidth]{./figure/fig6_plot-1.pdf} % AC THIS LOOKS SHITTY
+\end{center}
+\end{frame}
+
+% Steph 6a
+\begin{frame}[fragile]{Histograms}
+<<echo=F>>=
+options(width=80)
+@
+<<tidy=F, fig.keep='none', size="scriptsize">>=
+my.h <- hist(dataframe.ht$Height)
+my.h
+@
+\end{frame}
+
+
+% Steph 7
+\begin{frame}[fragile]{Bar charts}
+<<tidy=F, size="scriptsize", fig.keep='none'>>=
+mybp <- table(dataframe.ht$Height)
+mybp
+par(mfrow = c(1, 1), las = 2)
+barplot(mybp)
+@
+<<fig7_plot, fig.width=4, fig.height=4,include=F>>=
+par(mfrow = c(1, 1), las = 2)
+barplot(mybp)
+@
+\vspace{-0.8cm}
+\begin{center}
+\includegraphics[width=0.4\linewidth]{./figure/fig7_plot-1.pdf} %AC - AGAIN, FIGURE TO Large
+\end{center}
+\end{frame}
+
+%Steph 9
+\begin{frame}[fragile]{Margins and multiple figures}
+Dividing the graphics device: \texttt{mfrow} = multiframe rowwise, \texttt{mar} = margins (dashed \textcolor{blue}{blue}), \texttt{oma} = outer margins (\textcolor{green}{green})
+<<fig9_plot, fig.width=8, fig.height=4,include=F>>=
+par(mfrow = c(1, 2), mar = c(4, 4, 1, 1), oma = c(1.5, 2, 1, 1))
+plot(Height ~ Age, data = dataframe.ht, col = Sex, pch = 16, cex = 3)
+boxplot(Height ~ Sex, data = dataframe.ht)
+#box('plot', col='red')  
+box('figure', col = 'blue', lty = "dashed")
+box('outer', col = 'green', lwd = 5)
+@
+<<tidy=F, eval=F>>=
+par(mfrow = c(1, 2), mar = c(4, 4, 1, 1), oma = c(1.5, 2, 1, 1))
+plot(Height ~ Age, data = dataframe.ht, col = Sex, pch = 16, cex = 3)
+boxplot(Height ~ Sex, data = dataframe.ht)
+@
+\begin{center}
+\includegraphics[width=0.7\linewidth]{./figure/fig9_plot-1.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Exporting figures}
+<<tidy=F, eval=F>>=
+?pdf ?postscript
+?bmp ?jpeg ?png ?tiff
+@
+<<tidy=F, eval=F>>=
+pdf(file = "my_plot.pdf", width = 14, height = 7)
+par(mfrow = c(1, 2), mar = c(4, 4, 1, 1), oma = c(1.5, 2, 1, 1))
+plot(Height ~ Age, data = dataframe.ht, col = Sex, pch = 16, cex = 3)
+boxplot(Height ~ Sex, data = dataframe.ht)
+dev.off() # close the pdf
+getwd() # to check where the file is
+@
+\end{frame}
+
+
+%Steph 10
+\begin{frame}[fragile]{Learning how to plot}
+1. Check graph example codes in the help function, e.g. 
+<<tidy=F, eval=F>>=
+example(hist)
+@
+2. Scroll the web
+
+(e.g. \url{http://www.r-graph-gallery.com/all-graphs/})
+\vfill
+\begin{center}
+\includegraphics[width=\linewidth]{figures/graph.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[t]{Learning how to plot}
+3. Read books:
+\vfill
+\begin{center}
+\includegraphics[height=5cm]{figures/Murrell_Rgraphics.jpg} % R core member who created grid
+\includegraphics[height=5cm]{figures/Deepayan_lattice.jpg}
+\includegraphics[height=5cm]{figures/Wickham_ggplot2.jpg}
+\includegraphics[height=5cm]{figures/Chang_RGraphics.jpg}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{Some of my home-made R graphics}
+\begin{center}
+  \includegraphics[width=0.3\linewidth, keepaspectratio]{figures/plot5}
+  \hspace{0.1cm}
+  \includegraphics[width=0.3\linewidth, keepaspectratio]{figures/plot9}
+  \hspace{0.1cm}
+  \includegraphics[width=0.3\linewidth, keepaspectratio]{figures/plot8}
+\end{center}
+\end{frame}
+
+
+\section{Programming}
+\begin{frame}{Getting started with R}
+  \setcounter{tocdepth}{1}
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}[fragile]{Usual programming commands exist in R}
+<<>>=
+for (i in 1:4) {
+  print(x = i)
+  if (i == 2) print(x = "found 2!")
+}
+@
+<<tidy=F, eval=F>>=
+?"for"
+@
+\end{frame}
+
+\begin{frame}[fragile]{You can write your own functions!}
+<<>>=
+OddRatio <- function(a, b) {
+  odd.a <- a/(1 - a)
+  odd.b <- b/(1 - b)
+  return(odd.a/odd.b)
+}
+@
+
+<<>>=
+OddRatio(0.1, 0.01)
+@
+\end{frame}
+
+\begin{frame}[fragile]{How to get the code behind a function?}
+Usually, by simply typing its name (without brackets). But that is not always sufficient\dots
+<<size="scriptsize">>==
+lm
+@
+\end{frame}
+
+\begin{frame}[fragile]{How to get the code behind a function?}
+R methods (S3):
+\vspace{1em}
+<<size="scriptsize">>==
+residuals
+@
+
+\texttt{residuals()} is a \emph{generic} function which rely on class specific methods:
+\vspace{1em}
+
+<<size="scriptsize">>==
+methods(residuals)
+@
+The methods with a \texttt{*} are not exported from their package namespace.
+\end{frame}
+
+\begin{frame}[fragile]{How to get the code behind a function?}
+Getting the code for exported R methods (S3):
+\vspace{1em}
+<<size="scriptsize">>==
+residuals.lm
+@
+\end{frame}
+
+\begin{frame}[fragile]{How to get the code behind a function?}
+Getting the code for non-exported R methods (S3):
+\vspace{1em}
+<<size="scriptsize">>=
+residuals.nls
+@
+
+<<size="scriptsize">>=
+getAnywhere("residuals.nls") # or getS3method("residuals", "nls") or stats:::residuals.nls
+@
+\end{frame}
+
+\begin{frame}[fragile]{Challenge \#3}
+\begin{large}
+\begin{center}
+What is the code behind \textit{t.test()}?
+\end{center}
+\end{large}
+\end{frame}
+
+\begin{frame}[fragile]{How to get the code behind a function?}
+Some functions -- the interfaces -- call functions that are written in other languages. The source code of these latter functions is not directly visible (spotted as \texttt{.C()}, \texttt{.Fortran()}, \texttt{.Call()}, \texttt{.Primitive()}, \texttt{.Internal()}, \texttt{.External()}).
+\vspace{1em}
+<<size="scriptsize">>=
+dnorm
+@
+\vspace{1em}
+In these cases, the easiest is to use the read-only mirror for R (\url{https://github.com/wch/r-source}) or the relevant package on Github!
+(here, the answer lies in r-source/src/nmath/dnorm.c)
+\vfill
+For more info, check: \url{https://stackoverflow.com/questions/19226816/how-can-i-view-the-source-code-for-a-function}.
+\end{frame}
+
+\begin{frame}[fragile]{Numerical issues common to most programming languages}
+<<>>=
+0.7 - 0.4 - 0.3 == 0
+@
+
+\pause
+\vfill
+Why?
+<<size="scriptsize">>=
+print(seq(0, 1, 0.1), digits = 22)
+@
+\vfill
+<<>>=
+x <- 0.7 - 0.4 - 0.3
+print(x, digits = 22)
+@
+\vfill
+NB: similar issues can happen in Excel too (\url{https://support.office.com/en-us/article/Set-rounding-precision-E5D707E3-07A8-4DF2-810C-218C531EB06A})
+\end{frame}
+
+\begin{frame}[fragile]{Numerical issues common to most programming languages}
+<<eval=T>>=
+??"equality"
+@
+\begin{scriptsize}
+\begin{verbatim}
+Help files with alias or concept or title matching ‘equality’ using
+fuzzy matching:
+
+
+FactoMineR::prefpls     Scatter plot and additional variables with
+                        quality of representation contour lines
+base::all.equal         Test if Two Objects are (Nearly) Equal
+base::identical         Test Objects for Exact Equality
+datasets::airquality    New York Air Quality Measurements
+\end{verbatim}
+\end{scriptsize}
+<<>>=
+?all.equal
+all.equal(target = 0, current = 0.7 - 0.4 - 0.3)
+@
+\end{frame}
+
+% \begin{frame}[fragile]{R is a programming language\dots with usual limits}
+% J.M Muller's Serie: $u_0=2$; $u_1=-4$; $u_{n+1} = 111 - \frac{1130}{u_n} + \frac{3000}{u_n*u_{n-1}}$
+% <<size="scriptsize">>=
+% u <- c(2, -4)
+% new.u <- function(u) 111 -1130/u[length(u)] + 3000/(u[length(u)]*u[length(u)-1])
+% for(i in 1:40) u <- c(u, new.u(u))
+% @
+% <<figMuller, fig.width=6, fig.height=6, include=F>>=
+% par(las=1)
+% plot(u, type="b", ylim=c(-10,110))
+% abline(h=6, col=2, lty=2, lwd=2)
+% legend("topleft", bty="n", lwd=2, col=2, lty=2, legend=c("Exact limit"))
+% @
+% \begin{center}
+% \includegraphics[height=0.7\textheight]{./figure/figMuller-1.pdf}
+% \end{center}
+% \end{frame}
+
+
+\section{Learning about R}
+\begin{frame}{Getting started with R}
+  \setcounter{tocdepth}{1}
+  \tableofcontents[currentsection]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{Learning about R}
+Official documentation:
+\begin{itemize}
+\item the help files: every single (exported) function has a help file associated with it!
+\item official manuals (boring but thorough: \url{https://cran.r-project.org/manuals.html})
+\end{itemize}
+\vfill
+\pause
+Books (roughly sorted by amount of conceptual content):
+\begin{center}
+\begin{figure}
+\begin{subfigure}[b]{2.4cm}
+\centering
+\includegraphics[height=3.5cm]{figures/bookBecksi}
+\caption*{$\sim 30$ \euro}
+\end{subfigure}
+\begin{subfigure}[b]{2.4cm}
+\centering
+\includegraphics[height=3.5cm]{figures/Rbook2}
+\caption*{$\sim 35$ \euro}
+\end{subfigure}
+\begin{subfigure}[b]{2.4cm}
+\centering
+\includegraphics[height=3.5cm]{figures/Dalgaard_book}
+\caption*{$\sim 40$ \euro}
+\end{subfigure}
+\begin{subfigure}[b]{2.4cm}
+\centering
+\includegraphics[height=3.5cm]{figures/Rbook}
+\caption*{$\sim 60$ \euro}
+\end{subfigure}
+\end{figure}
+\end{center}
+\vfill
+\pause
+Journals:
+\begin{itemize}
+\item Journal of Statistical Software (\url{https://www.jstatsoft.org/index})
+\item The R Journal (\url{https://journal.r-project.org})
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Learning about R}
+RStudio cheatsheets (\url{https://www.rstudio.com/resources/cheatsheets/}):
+\begin{center}
+\includegraphics[width=0.5\linewidth]{figures/base-r.pdf}
+\end{center}
+\vfill
+Note: there are many cheatsheets covering many aspects of R and several packages developed by RStudio!
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Learning about R}
+RStudio webinars (\url{https://resources.rstudio.com/
+}):
+\begin{center}
+\includegraphics[width=0.6\linewidth]{figures/RStudio_webinars.png}
+\end{center}
+\vfill
+Note: there are many videos covering many aspects of R and several packages developed by RStudio!
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{Learning about R}
+Blogs:
+\begin{itemize}
+\item \url{http://www.r-bloggers.com}
+\item \url{https://rweekly.org}
+\item \url{http://blog.revolutionanalytics.com}
+\end{itemize}
+\vfill
+\pause
+Forum:
+\begin{itemize}
+\item \url{https://stackoverflow.com/questions/tagged/r}
+\item \url{https://stats.stackexchange.com/questions/tagged/r}
+\end{itemize}
+\vfill
+\pause
+Mailing lists:
+\begin{itemize}
+\item \url{https://www.r-project.org/mail.html}
+\end{itemize}
+\vfill
+\pause
+Twitter:
+\begin{itemize}
+\item \#rstats
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{Learning about R}
+Meetup groups:
+\begin{itemize}
+\item \url{https://www.meetup.com/Berlin-R-Users-Group/}
+\item \url{https://www.meetup.com/rladies-berlin/}
+\end{itemize}
+\vfill
+\pause
+Courses \& Workshop:
+\begin{itemize}
+\item Physalia (\url{https://www.physalia-courses.org})
+\item DataCamp (online: \url{https://www.datacamp.com/courses/tech:r})
+\end{itemize}
+\vfill
+\pause
+Conferences:
+\begin{itemize}
+\item useR (\url{https://user2018.r-project.org})
+\item European R User meetings (\url{https://erum.io})
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The best person who can teach you R is YOU!}
+\begin{center}
+\huge{\huge{After having learned some basics, just open the console and test your understanding by performing experiments!}}
+\vfill
+\huge{\huge{Do not copy and paste stuff from internet without trying to understand!!!}}
+\end{center}
+\end{frame}
+
+\end{document}
