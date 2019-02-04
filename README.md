@@ -1,7 +1,9 @@
 ## Getting Started with R
 
 This is the material of a R course I give at the IZW, Berlin, Germany.
-The course lasts one day and is aimed at preparing students to an introductory statistics course which span 4 days following the R course.
+The course lasts one day and is aimed at preparing students to an introductory statistics course which spans 4 days following the R course.
+
+The given version of the course will be archived here using the Git(Hub) system of tags (and releases).
 
 Note:
 - the material is not supposed to be fully self explanatory, so it may be difficult to follow without my bla bla.
