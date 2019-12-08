@@ -6,4 +6,5 @@
 *.toc
 *.vrb
 .Rproj.user
+.DS_Store
 figure
