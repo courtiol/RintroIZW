@@ -24,7 +24,7 @@
 \hspace{2cm}
 \includegraphics[height=2cm]{figures/FU}
 }
-\date[December 2019]{\small December 2019}%
+\date[March 2020]{\small March 2020}%
 
 \begin{document}
 \selectmanualcolour{blue!75!black}%set main colour
@@ -91,7 +91,7 @@ Key points (general):
 \item scalable (laptop/supercomputer; local/remote; Windows/MacOS/Linux/Unix)
 \item rich (\url{https://rdrr.io}; \url{https://www.rdocumentation.org})
 \item up to date (\url{http://dirk.eddelbuettel.com/cranberries/cran/updated})
-\item friendly (more on that later)
+\item friendly community (more on that later)
 \end{itemize}
 \end{frame}
 
@@ -137,7 +137,7 @@ Key points (general):
 \begin{frame}{Installation steps}
   \begin{enumerate}
   \item connect to the WIFI network \texttt{izw-gast} (check password on blackboard)
-  \item set the internet proxy: 192.168.2.2:3128 (necessary at IZW, but usually not)
+  %\item set the internet proxy: 192.168.2.2:3128 (necessary at IZW, but usually not)
   \item check that you do get internet access
   \item install \r: \url{https://cran.r-project.org/}
   \item install RStudio: \url{https://www.rstudio.com/products/rstudio/download/}
@@ -152,7 +152,7 @@ Key points (general):
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{The RStudio Integrated Desktop Environment (IDE)}
+\begin{frame}{The RStudio Integrated Development Environment (IDE)}
 \begin{center}
 \includegraphics[width=0.9\linewidth]{figures/RStudio.png}
 \end{center}
@@ -279,7 +279,6 @@ This is where you type the code you want to keep
 \begin{center}
 \includegraphics[height=0.8\textheight]{figures/RStudio_pane1.png}
 \end{center}
-\textbf{NB:} tabs give you access to different files (if several files are open)
 \end{frame}
 
 
@@ -289,7 +288,6 @@ This is where you can run \r \ code directly
 \begin{center}
 \includegraphics[height=0.8\textheight]{figures/RStudio_pane2.png}
 \end{center}
-\textbf{NB:} tabs give you access to a other panes depending on the context. They are all used to run code!
 \end{frame}
 
 
@@ -299,7 +297,6 @@ This is where everything else is
 \begin{center}
 \includegraphics[height=0.8\textheight]{figures/RStudio_pane34.png}
 \end{center}
-\textbf{NB:} tabs give you access to various panes
 \end{frame}
 
 
@@ -628,29 +625,40 @@ install.packages("tidyverse")  ## install {tidyverse}
 @
 \end{frame}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Installing a package behind the IZW proxy}
-Try to install the \verb`{tidyverse}` as shown previously\\
-\pause
-\vspace{1em}
-If the installation procedure does not start, abort, do the following, and then try installing the package again!\\
-\vspace{1em}
-\begin{itemize}
-\item create or edit the file \texttt{.Renviron}:
-<<eval = FALSE>>=
-file.edit("~/.Renviron")
-@
-\item add to this file the following lines:
-
-\url{http_proxy=http://192.168.2.2:3128/}
-
-\url{https_proxy=http://192.168.2.2:3128/}
-\end{itemize}
-\pause
-\vfill
-{\bf Note:} if you do this, at home, you will have to comment the lines inside the file for \r\ to be able to access internet
+\selectmanualcolour{red!75!black}
+\begin{frame}[fragile]{Practice}
+\begin{center}
+\begin{large}
+Install the \verb+{tidyverse}+!
+\end{large}
+\end{center}
 \end{frame}
+\selectmanualcolour{blue!75!black}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[fragile]{Installing a package}
+%Try to install the \verb`{tidyverse}` as shown previously\\
+%\pause
+%\vspace{1em}
+%If the installation procedure does not start, abort, do the %following, and then try installing the package again!\\
+%\vspace{1em}
+%\begin{itemize}
+%\item create or edit the file \texttt{.Renviron}:
+%<<eval = FALSE>>=
+%file.edit("~/.Renviron")
+%@
+%\item add to this file the following lines:
+%
+%\url{http_proxy=http://192.168.2.2:3128/}
+%
+%\url{https_proxy=http://192.168.2.2:3128/}
+%\end{itemize}
+%\pause
+%\vfill
+%{\bf Note:} if you do this, at home, you will have to comment the %lines inside the file for \r\ to be able to access internet
+%\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -828,7 +836,7 @@ There are two competing paradigms for manipulating data in \r:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile, t]{Vector based approach}
-\textbf{Goal:} computing the mean and sd of sepal length in mm for per species
+\textbf{Goal:} computing the mean and SD of sepal length in mm for per species
 
 \vfill
 <<vector way>>=
@@ -909,7 +917,7 @@ There are 8 core tidyverse packages:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile, t]{Data frame based approach with pipes (\texttt{\%>\%}) from \texttt{\{magrittr\}}}
-\textbf{Goal:} computing the mean and sd of sepal length in mm for per species
+\textbf{Goal:} computing the mean and SD of sepal length in mm for per species
 
 \vspace{1em}
 <<echo = FALSE>>=
@@ -1030,7 +1038,7 @@ iris_tbl %>% group_by(Species) %>% summarise(Sepal.Length.max = max(Sepal.Length
 \begin{frame}[fragile]{Practice}
 \begin{center}
 \begin{large}
-Assuming petals are square, compute:\\
+Assuming petals are rectangular, compute:\\
 \vspace{1em}
 
 \begin{minipage}{0.25\linewidth}
