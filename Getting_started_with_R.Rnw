@@ -305,9 +305,9 @@ This is where everything else is
 \begin{enumerate}
 \item only use the \texttt{Console} pane to mess around
 \item write proper \r \ code in the \texttt{Source} pane
-\item start your script with \verb`rm(list = ls())`
 \item comment thoroughly your \r \ script using \# signs
-\item re-run frequently your entire script to make sure that it works
+\item re-run frequently your entire script to make sure that it works\\
+(after restarting the session: Session/Restart R)
 \end{enumerate}
 \end{frame}
 
@@ -847,7 +847,7 @@ iris$Sepal.Length.mm <- iris$Sepal.Length * 10
 results <- data.frame(Species = unique(iris$Species))
 
 ## compute the means and SD per species
-for (sp in results$Species) {
+for (sp in unique(results$Species)) {
   results$meanSL[results$Species == sp] <- mean(iris$Sepal.Length.mm[iris$Species == sp])
   results$sdSL[results$Species == sp]   <- sd(iris$Sepal.Length.mm[iris$Species == sp])
 }
@@ -884,8 +884,28 @@ results
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{the \texttt{\{tidyverse\}}}
+\begin{frame}[fragile, t]{Data frame based approach with pipes (\texttt{\%>\%}) from \texttt{\{magrittr\}}}
+\textbf{Goal:} computing the mean and SD of sepal length in mm for per species
 
+\vspace{1em}
+<<echo = FALSE>>=
+rm(iris)
+@
+<<data frame pipe way>>=
+iris %>%
+  mutate(Sepal.Length.mm = Sepal.Length * 10) %>%
+  group_by(Species) %>%
+  summarise(meanSL = mean(Sepal.Length.mm),
+            sdSL   = sd(Sepal.Length.mm)) -> results
+results
+@
+\pause
+\vspace{1em}
+{\bf Note:} pipes capture what is on their left and forward this as the first argument of the function that comes on their right
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\texttt{\{tidyverse\}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{The \texttt{\{tidyverse\}}}
@@ -912,28 +932,6 @@ There are 8 core tidyverse packages:
 \item backward compatibility is not the absolute priority
 \item financed and controlled by RStudio
 \end{itemize}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile, t]{Data frame based approach with pipes (\texttt{\%>\%}) from \texttt{\{magrittr\}}}
-\textbf{Goal:} computing the mean and SD of sepal length in mm for per species
-
-\vspace{1em}
-<<echo = FALSE>>=
-rm(iris)
-@
-<<data frame pipe way>>=
-iris %>%
-  mutate(Sepal.Length.mm = Sepal.Length * 10) %>%
-  group_by(Species) %>%
-  summarise(meanSL = mean(Sepal.Length.mm),
-            sdSL   = sd(Sepal.Length.mm)) -> results
-results
-@
-\pause
-\vspace{1em}
-{\bf Note:} pipes capture what is on their left and forward this as the first argument of the function that comes on their right
 \end{frame}
 
 
@@ -1194,11 +1192,11 @@ Browse \url{https://www.r-graph-gallery.com} and try to reproduce one plot you l
 All plots are composed of:
 \begin{itemize}[<+->]
   \item Data that you want to visualise
-  \item A set of \textbf{aes}thetic mappings describing which variables are mapped to which aesthetics
-  \item Layers made up of geometric elements (or \textbf{geom}s)
+  \item A set of \textbf{aes}thetic mappings describing which variables are mapped to which visual properties
+  \item Layers made up of \textbf{geom}etric elements
   \item \textbf{Scale}s describing how values in the data space are mapped to values in an aesthetic space
   \item A \textbf{coord}inate system describing how data coordinates are mapped to the plotted plane
-  \item A \textbf{facet}ing specification describing how data are dispatched   into sub-plots
+  \item A \textbf{facet}ing specification describing how data are dispatched into sub-plots
   \item A \textbf{theme} that controls the details of the display (font size, background colour\dots)
 \end{itemize}
 \vfill
@@ -1582,7 +1580,7 @@ You can check the help files for such functions as follow:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{You can create your own \r \ functions!}
 <<>>=
-OddRatio <- function(proba.x, proba.y) {
+OddsRatio <- function(proba.x, proba.y) {
   odd.x <- proba.x/(1 - proba.x)
   odd.y <- proba.y/(1 - proba.y)
   odd.x/odd.y
@@ -1592,7 +1590,7 @@ OddRatio <- function(proba.x, proba.y) {
 \pause
 Then you can use them as any other functions:
 <<>>=
-OddRatio(0.1, 0.01)
+OddsRatio(0.1, 0.01)
 @
 \end{frame}
 
