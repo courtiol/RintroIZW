@@ -24,7 +24,7 @@
 \hspace{2cm}
 \includegraphics[height=2cm]{figures/FU}
 }
-\date[March 2020]{\small March 2020}%
+\date[December 2020]{\small December 2020}%
 
 \begin{document}
 \selectmanualcolour{blue!75!black}%set main colour
@@ -81,7 +81,7 @@ Key points (for this course):
 Key points (general):
 
 \vspace{1em}
-\begin{itemize}[<+->]
+\begin{itemize}
 \item interactive (you can explore each step of your workflow in details)
 \item flexible (you can create your own functions)
 \item transparent (you use scripts which allows for reproducible research)
@@ -136,9 +136,9 @@ Key points (general):
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Installation steps}
   \begin{enumerate}
-  \item connect to the WIFI network \texttt{izw-gast} (check password on blackboard)
+  %\item connect to the WIFI network \texttt{izw-gast} (check password on blackboard)%
   %\item set the internet proxy: 192.168.2.2:3128 (necessary at IZW, but usually not)
-  \item check that you do get internet access
+  %\item check that you do get internet access
   \item install \r: \url{https://cran.r-project.org/}
   \item install RStudio: \url{https://www.rstudio.com/products/rstudio/download/}
   \item open RStudio
@@ -399,10 +399,9 @@ one_plus_one_plus_one
 \vfill
 \pause
 \begin{itemize}[<+->]
-\item \verb+->+ works too (if you swith the lefthand side and the righthand side)
+\item \verb+->+ works too (if you switch the left hand side and the right hand side)
 \item ``\texttt{\_}'' and ``\texttt{.}'' are OK but avoid spaces \& other weird characters in names
 \item names are case sensitive
-\item use \texttt{<-} for assignments, not \texttt{=}
 \end{itemize}
 \end{frame}
 
@@ -552,8 +551,6 @@ or
 \begin{center}
 \includegraphics[height = 4cm]{figures/RStudio_search_fn.png}
 \end{center}
-\vfill
-\textbf{NB:} this is failing on some 1.2.xxx versions of RStudio
 \end{frame}
 
 \section{Packages}
@@ -755,7 +752,7 @@ str(iris)
 The most common class of objects used for storing data in \r \ is the \underline{data frame}!\\
 \vspace{1em}
 \begin{itemize}
-\item each column is a variable, usually corresponding to a \underline{vector} (a serie of elements of 1 type)
+\item each column is a variable, usually corresponding to a \underline{vector} (a series of elements of 1 type)
 \item all columns have the same length (rectangular format)
 \item contains column names (usually informative) and row names (usually not informative)
 \end{itemize}
@@ -860,7 +857,7 @@ results
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile, t]{Data frame based approach}
-\textbf{Goal:} computing the mean and sd of sepal length in mm for per species
+\textbf{Goal:} computing the mean and SD of sepal length in mm for per species
 
 \vfill
 <<echo = FALSE>>=
@@ -1186,11 +1183,25 @@ Browse \url{https://www.r-graph-gallery.com} and try to reproduce one plot you l
 \includegraphics[height = \textheight]{figures/Wickham_ggplot2.jpg}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile, t]{You can make nice plots with \texttt{\{ggplot2\}} and companion packages}
+\only<1-2>{@CedScherer}
+\only<3>{@geokaramanis}
+\only<4>{@\_Alexis\_69\_}
+\only<5>{@grssnbchr}
+\begin{center}
+\only<1>{\includegraphics[height = 7cm]{figures/2020_08_CarbonFoodprint_alt}}
+\only<2>{\includegraphics[height = 7cm]{figures/2020_23_MarbleRaces}}
+\only<3>{\includegraphics[height = 7cm]{figures/ggplot2_slavery}}
+\only<4>{\includegraphics[height = 7cm]{figures/ggplot2_velos}}
+\only<5>{\includegraphics[height = 7cm]{figures/ggplot2_swiss}}
+\end{center}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile, t]{The grammar of graphics}
 All plots are composed of:
-\begin{itemize}[<+->]
+\begin{itemize}
   \item Data that you want to visualise
   \item A set of \textbf{aes}thetic mappings describing which variables are mapped to which visual properties
   \item Layers made up of \textbf{geom}etric elements
@@ -1307,7 +1318,7 @@ Plot the distribution of the sepal length of each species of iris using:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile, t]{Layers: statistics}
-Overridding the \verb`geom_*()` default statistic is sometimes useful:\\
+Overriding the \verb`geom_*()` default statistic is sometimes useful:\\
 \vspace{1em}
 <<layer_ecdf>>=
 ggplot(iris) +
@@ -1426,7 +1437,7 @@ You can use \verb`coord_*()` to modify how graphical elements are projected on a
 ggplot(iris) +
   aes(x = Sepal.Length, y = Sepal.Width, colour = Species) +
   geom_point() + 
-  coord_trans(y = "log10", limy = c(1.5, 5))
+  coord_trans(y = "log10", ylim = c(1.5, 5))
 @
 \end{frame}
 
@@ -1719,20 +1730,7 @@ Journal of Statistical Software, \r \ Journal, Journal of Open Source Software \
 \begin{scriptsize}
 \item \#rstats
 \item \#tidyverse
-\item @hadleywickham ($>$92K followers)
-\item @dataandme ($>$40K)%Mara Averick
-\item @drob ($>$39K)%David Robinson
-\item @rdpeng ($>$38K)%Roger Peng
-\item @JennyBryan ($>$27K)
-\item @statgarrett ($>$17K)%Garrett Grolemund
-\item @RStudio ($>$84K)
-\item @Rbloggers ($>$74K)
-\item @RLangTip ($>$64K)% one \r \ tip per day
-\item @rstudiotips ($>$53K)
-\item @R\_Programming ($>$31K)
-\item @WeAreRLadies \& @RLadiesGlobal (2$\times>$13K)
-\item @rstatstweet \& @rstats4ds (bot like)
-\item @rdataberlin (new!)
+\item @rdataberlin (and check the people I follow in there)
 \end{scriptsize}
 \end{itemize}
 \end{itemize}
