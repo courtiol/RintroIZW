@@ -912,14 +912,16 @@ The tidyverse packages (\url{https://www.tidyverse.org}) are developed by RStudi
 There are 8 core tidyverse packages:
 
 \begin{center}
-\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-dplyr"}
-\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-ggplot2"}
-\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-forcats"}
-\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-purrr"}
-\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-readr"}
-\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-stringr"}
-\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-tibble"}
-\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-tidyr"}
+\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-tidyverse"}}
+=
+\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-tibble"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-readr"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-dplyr"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-stringr"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-forcats"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-tidyr"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-ggplot2"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-purrr"}}
 \end{center}
 \pause
 \vfill
@@ -1700,7 +1702,7 @@ Journal of Statistical Software, \r \ Journal, Journal of Open Source Software \
 \item SATRDAYS (\url{https://satrdays.org/events})
 \item European R Users Meeting (\url{https://erum.io})
 \item \texttt{rstudio::conf}\\ (\url{https://www.rstudio.com/conference})
-\item useR! (\texttt{@useR2020stl})
+\item useR!
 \end{scriptsize}
 \end{itemize}
 \vfill
@@ -1711,6 +1713,7 @@ Journal of Statistical Software, \r \ Journal, Journal of Open Source Software \
 \item \url{https://stackoverflow.com/questions/tagged/r}
 \item \url{https://community.rstudio.com}
 \item \url{https://www.r-bloggers.com}
+\item \url{https://rfordatascience.slack.com}
 \end{scriptsize}
 \end{itemize}
 \vfill
