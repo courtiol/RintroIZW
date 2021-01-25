@@ -2,8 +2,7 @@
 
 This is the material of a R course I used to give at the IZW, Berlin, Germany.
 The version from this branch is now outdated.
-You can switch to the master branch of the repository to check the new version.
 
-The main difference between the two versions is that the one now in used builds on the Tidyverse, while the previous one (i.e. the one in the current branch) does not.
+You can switch to other branches of this repository to check newer versions.
 
-Check the README file from the master branch for more info.
+The main difference between this version and the others is that this old version does not build on the **{tidyverse}**.
