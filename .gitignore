@@ -5,5 +5,8 @@
 *.tex
 *.toc
 *.vrb
+*.aux
+*.out
 .Rproj.user
 figure
+.DS_Store
