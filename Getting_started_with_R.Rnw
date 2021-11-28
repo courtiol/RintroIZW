@@ -798,7 +798,7 @@ iris_tbl
 @
 \pause
 \vspace{1em}
-{\bf Note:} the tidyverse is a meta package that loads several packages we are going to use
+{\bf Note:} the tidyverse is a meta-package that loads several packages we are going to use
 \end{frame}
 
 
@@ -881,7 +881,7 @@ results
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile, t]{Data frame based approach with pipes (\texttt{\%>\%}) from \texttt{\{magrittr\}}}
+\begin{frame}[fragile, t]{Data frame based approach with pipes (\texttt{|>} or \texttt{\%>\%})}
 \textbf{Goal:} computing the mean and SD of sepal length in mm for per species
 
 \vspace{1em}
@@ -889,9 +889,9 @@ results
 rm(iris)
 @
 <<data frame pipe way>>=
-iris %>%
-  mutate(Sepal.Length.mm = Sepal.Length * 10) %>%
-  group_by(Species) %>%
+iris |>
+  mutate(Sepal.Length.mm = Sepal.Length * 10) |>
+  group_by(Species) |>
   summarise(meanSL = mean(Sepal.Length.mm),
             sdSL   = sd(Sepal.Length.mm)) -> results
 results
@@ -962,14 +962,14 @@ You can do a lot with 5 functions:\\
 \column{0.475\linewidth}
 Keep columns using \texttt{select()}:\\
 <<select details>>=
-iris_tbl %>%
+iris_tbl |>
   select(Sepal.Length, Sepal.Width)
 @
 \pause
 \column{0.475\linewidth}
 Discard columns using \texttt{select()}:\\
 <<select details2>>=
-iris_tbl %>%
+iris_tbl |>
   select(-Sepal.Length, -Sepal.Width)
 @
 \end{columns}
@@ -980,13 +980,13 @@ iris_tbl %>%
 \begin{frame}[fragile, t]{\texttt{filter()}}
 Keep rows using \texttt{filter()}:\\
 <<filter details>>=
-iris_tbl %>% filter(Sepal.Length > 7, Sepal.Width > 3)
+iris_tbl |> filter(Sepal.Length > 7, Sepal.Width > 3)
 @
 \pause
 \vspace{1em}
-Keep rows using \verb`group_by() %>% filter()`:\\
+Keep rows using \verb`group_by() |> filter()`:\\
 <<filter details2>>=
-iris_tbl %>%  group_by(Species) %>%  filter(Sepal.Length == max(Sepal.Length)) %>%  group_by()
+iris_tbl |> group_by(Species) |> filter(Sepal.Length == max(Sepal.Length)) |> ungroup()
 @
 \pause
 \vfill
@@ -998,12 +998,12 @@ iris_tbl %>%  group_by(Species) %>%  filter(Sepal.Length == max(Sepal.Length)) %
 \begin{frame}[fragile, t]{\texttt{mutate()}}
 Create a column using \texttt{mutate()}:\\
 <<mutate details>>=
-iris_tbl %>% mutate(Sepal.Length.mm = Sepal.Length * 10)
+iris_tbl |> mutate(Sepal.Length.mm = Sepal.Length * 10)
 @
 \pause
-Create a column using  \verb`group_by() %>% mutate()`:\\
+Create a column using  \verb`group_by() |> mutate()`:\\
 <<mutate details2>>=
-iris_tbl %>% group_by(Species) %>% mutate(Sepal.Length.max = max(Sepal.Length)) %>% group_by()
+iris_tbl |> group_by(Species) |> mutate(Sepal.Length.max = max(Sepal.Length)) |> ungroup()
 @
 \pause
 \vfill
@@ -1015,18 +1015,18 @@ iris_tbl %>% group_by(Species) %>% mutate(Sepal.Length.max = max(Sepal.Length)) 
 \begin{frame}[fragile, t]{\texttt{summarise()}}
 Compute summary statistics using \texttt{summarise()}:\\
 <<summarise details>>=
-iris_tbl %>% summarise(Sepal.Length.max = max(Sepal.Length), N = n())
+iris_tbl |> summarise(Sepal.Length.max = max(Sepal.Length), N = n())
 @
 \pause
-Compute summary statistics using  \verb`group_by() %>% summarise()`:\\
+Compute summary statistics using  \verb`group_by() |> summarise()`:\\
 <<summarise details2>>=
-iris_tbl %>% group_by(Species) %>% summarise(Sepal.Length.max = max(Sepal.Length), N = n())
+iris_tbl |> group_by(Species) |> summarise(Sepal.Length.max = max(Sepal.Length), N = n())
 @
 \pause
 \vfill
 {\bf Note:} \verb`summarise()` only accepts functions that return a vector of length 1
 
-{\bf Tip:} \verb`summarise()` ungroup automatically
+{\bf Tip:} \verb`summarise()` ungroup automatically (if there is a single grouping variable)
 \end{frame}
 
 
@@ -1052,9 +1052,9 @@ Assuming petals are rectangular, compute:\\
 \end{large}
 \end{center}
 <<echo = FALSE, eval = FALSE>>=
-iris %>%
-  mutate(area_petal = Petal.Length * Petal.Width) %>%
-  group_by(Species) %>%
+iris |>
+  mutate(area_petal = Petal.Length * Petal.Width) |>
+  group_by(Species) |>
   summarise(mean = mean(area_petal),
             median = median(area_petal),
             min = min(area_petal),
@@ -1074,11 +1074,11 @@ Lists allow for the organisation of any set of entities into a single R object:\
 \begin{columns}
 \column{0.65\linewidth}
 <<>>=
-iris %>% filter(Species %in% c("setosa", "versicolor")) -> iris2sp
+iris |> filter(Species %in% c("setosa", "versicolor")) -> iris2sp
 test <- t.test(Sepal.Length ~ Species, data = iris2sp)
 @
 \pause
-<<>>=
+<<size="tiny">>=
 str(test)
 @
 \pause
@@ -1240,7 +1240,7 @@ Step 1: we specify the data (a tidy data frame) using \texttt{ggplot()}:\\
 ggplot(iris) ## it calls the plotting device
 @
 \vfill
-\textbf{Note:} you can also write: \verb+iris %>% ggplot()+
+\textbf{Note:} you can also write: \verb+iris |> ggplot()+
 \end{frame}
 
 
