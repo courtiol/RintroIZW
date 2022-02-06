@@ -24,7 +24,7 @@
 \hspace{2cm}
 \includegraphics[height=2cm]{figures/FU}
 }
-\date[November 2021]{\small November 2021}%
+\date[February 2022]{\small February 2022}%
 
 \begin{document}
 \selectmanualcolour{blue!75!black}%set main colour
@@ -97,7 +97,7 @@ Key points (general):
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Is \r \ good for you?}
+\begin{frame}{What is \r \ good for?}
 \begin{columns}
 \column[t]{0.4\linewidth}
 \begin{block}{\r \ is good for:}
@@ -253,7 +253,7 @@ You can use \r \ without RStudio, but RStudio is:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{My tips about the global options}
-4. I use a black theme except when using a video projector (do as you please)
+4. I sometimes use a black theme (do as you please)
 \begin{center}
 \includegraphics[height=0.8\textheight]{figures/RStudio_settings4.png}
 \end{center}
@@ -262,7 +262,7 @@ You can use \r \ without RStudio, but RStudio is:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{My tips about the global options}
-5. I like to put the \texttt{source} and the \texttt{console} panes side-by-side to give them more vertical space on the screen
+5. I sometimes put the \texttt{source} and the \texttt{console} panes side-by-side to give them more vertical space on the screen (do as you please)
 \begin{center}
 \includegraphics[height=0.8\textheight]{figures/RStudio_settings5.png}
 \end{center}
@@ -1024,8 +1024,6 @@ iris_tbl |> group_by(Species) |> summarise(Sepal.Length.max = max(Sepal.Length),
 @
 \pause
 \vfill
-{\bf Note:} \verb`summarise()` only accepts functions that return a vector of length 1
-
 {\bf Tip:} \verb`summarise()` ungroup automatically (if there is a single grouping variable)
 \end{frame}
 
