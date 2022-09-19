@@ -1,6 +1,6 @@
 ## Getting Started with R
 
-This repository contains the material of R course I am giving at the [IZW](http://www.izw-berlin.de/welcome.html), in Berlin, Germany.
+This repository contains the material of R courses I am giving at the [IZW](http://www.izw-berlin.de/welcome.html), in Berlin, Germany.
 
 This master branch corresponds to a course which lasts one day and is aimed at preparing students to an introductory statistics course which spans 4 days following this R introduction.
 
