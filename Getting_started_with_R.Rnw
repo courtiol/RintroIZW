@@ -14,17 +14,17 @@
 
 \def\r{{\bf R}}
 
-\title{20 Things You Need To Know About \r}
-\author[IZW]{Alexandre Courtiol @rdataberlin}
+\title{20 Things to Know About \r}
+\author[Alex / \url{www.datazoogang.de} / @rdataberlin]{Alexandre Courtiol}
 \institute[]{Leibniz Institute of Zoo and Wildlife Research}%
 \titlegraphic{
 \vspace{1cm}
 \centering
-\includegraphics[height=2cm]{figures/izw_logo}
+\includegraphics[height=1.5cm]{figures/izw_logo}
 \hspace{2cm}
-\includegraphics[height=2cm]{figures/FU}
+\includegraphics[height=1.5cm]{figures/FU}
 }
-\date[September 2020]{\small September 2020}%
+\date[September 2022]{\small September 2022}%
 
 \begin{document}
 \selectmanualcolour{blue!75!black}%set main colour
@@ -50,7 +50,7 @@ opts_chunk$set("size" = "scriptsize",
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{20 Things You Need To Know About \r}
+\begin{frame}{20 Things to Know About \r}
   \setcounter{tocdepth}{1}
   \begin{scriptsize}
   \tableofcontents
@@ -85,12 +85,12 @@ Open: Menu / Tools / Global options and set things as follows:
 \column{0.5\linewidth}
 \begin{center}
 Never save or restore the workspace!
-\includegraphics[height=0.8\textheight]{figures/RStudio_settings.png}
+\includegraphics[height=0.7\textheight]{figures/RStudio_settings.png}
 \end{center}
 \column{0.5\linewidth}
 \begin{center}
 Activate code diagnostics
-\includegraphics[height=0.8\textheight]{figures/RStudio_settings3.png}
+\includegraphics[height=0.7\textheight]{figures/RStudio_settings3.png}
 \end{center}
 \end{columns}
 \end{frame}
@@ -109,8 +109,8 @@ Before you start some new work in \r,
 \vfill
 \textbf{NB:}
 \begin{itemize}
-\item an RStudio project is a folder containing the different files for a given project, including a simple project file that allows for us to open RStudio with the correct working directory set
-\item an \r \ Script is a (text) file where we can write \r \ code
+\item an RStudio project is a folder containing the different files for a given project, including a simple project file that allows you to open RStudio with the correct working directory set
+\item an \r \ Script is a (text) file where you can write \r \ code
 \item alternatives to \r \ Scripts exist to implement your work if you need to format text around your code (e.g. \r \ Markdown files)
 \end{itemize}
 \end{frame}
@@ -258,6 +258,8 @@ Note: all what is written in red above are functions
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{8. How to use a new function?}
+Before using a new function, it is a good idea to check its documentation:
+\vspace{1em}
 <<eval=F, echo=T>>=
 mean()
 @
@@ -302,21 +304,19 @@ round(mean(c(1, 4, 10))/sd(c(1, 4, 10)), 2)
 \pause
 Example 2:
 <<complex fn call 2>>=
-library(magrittr) ## we load a package introducing pipes
-
-c(1, 4, 10) %>%
-  mean() %>%
-  prod(1/sd(c(1, 4, 10))) %>%
+c(1, 4, 10) |>
+  mean() |>
+  prod(1/sd(c(1, 4, 10))) |>
   round(2)
 @
 \vfill
 \pause
 \begin{itemize}
-\item To decipher the first example, run things from the inside out step by step
-\item To decipher the second example, run things adding one line at a time
+\item To decipher the first example, run things from the inside out, step-by-step
+\item To decipher the second example, run things adding one line at a time\\ (always skipping the final pipe)
 \end{itemize}
 \vfill
-Here the implementation from the previous slide was easier to read but this is not always the most natural way to write
+Here the implementation from Example 1 is easier to read, but this is not always the most natural way to write
 \end{frame}
 
 
@@ -331,7 +331,7 @@ Here the implementation from the previous slide was easier to read but this is n
 \item binary R files (\texttt{*.rda}, \texttt{*.RData}, \texttt{*.rds}) $\rightarrow$ no pkg
 \end{itemize}
 \vspace{1em}
-For importing data you can often simply rely on the GUI\\ {\scriptsize (but copy and paste the \r \ code automatically generated into your script!)}:
+For importing data you can often simply rely on the GUI\\ {\scriptsize (but for reproducibility do copy and paste the \r \ code automatically generated into your script!)}:
 \begin{center}
 \includegraphics[height = 5cm]{figures/RStudio_readr.png}
 \end{center}
@@ -355,6 +355,7 @@ calibration
 \item each column is a variable, usually corresponding to a \underline{vector}\\ {\scriptsize (a series of elements of 1 type)}
 \item all columns have the same length {\scriptsize (rectangular format)}
 \item contains column names {\scriptsize (usually informative)} and row names {\scriptsize (usually not informative)}
+\item a \texttt{tibble} is one of the possible formats for data frames, but all formats work similarly
 \end{itemize}
 \end{frame}
 
@@ -366,7 +367,7 @@ calibration$y.tissue ## extract vector
 @
 \pause
 <<df3>>=
-calibration[calibration$site == "B", c("lat", "long", "y.tissue")]  ## filter rows and columns data frame
+calibration[calibration$site == "B", c("lat", "long", "y.tissue")]  ## filter rows and columns
 @
 \pause
 <<df4>>=
@@ -389,7 +390,7 @@ test_calib2sp <- t.test(y.tissue ~ lat, data = calib2sp)
 \pause
 \begin{columns}[T]
 \column{0.65\linewidth}
-<<>>=
+<<size="tiny">>=
 str(test_calib2sp) ## reveals the (often hidden) structure of the list
 @
 \pause
@@ -452,7 +453,7 @@ Packages extend \r \ functionalities:
 \pause
 Simple installation (once per \r\ installation):
 \begin{center}
-\includegraphics[height = 4cm]{figures/RStudio_packages_installation.png}
+\includegraphics[height = 3cm]{figures/RStudio_packages_installation.png}
 \end{center}
 \vspace{1em}
 \pause
@@ -480,10 +481,10 @@ You can all kind of data manipulation by combining 5 simple functions from \text
 \pause
 Example:
 <<grouped df>>=
-calibration %>%
-  filter(site != "A") %>%
-  mutate(y.tissue.not.permil = y.tissue / 1000) %>%
-  group_by(site) %>%
+calibration |>
+  filter(site != "A") |>
+  mutate(y.tissue.not.permil = y.tissue / 1000) |>
+  group_by(site) |>
   summarize(mean_per_site = mean(y.tissue.not.permil))
 @
 \end{frame}
@@ -502,19 +503,19 @@ There are many plotting systems in \r, such as:
 \end{itemize}
 \begin{columns}
 \column[b]{0.32\linewidth}
-<<baseplot_eg, out.width = "0.7\\linewidth", out.height = "0.7\\linewidth", size = "tiny">>=
+<<baseplot_eg, out.width = "0.7\\linewidth", size = "tiny">>=
 plot(y.tissue ~ lat,
      data = calibration)
 @
 \column[b]{0.32\linewidth}
-<<lattice_eg, out.width = "0.7\\linewidth", out.height = "0.7\\linewidth", size = "tiny">>=
+<<lattice_eg, out.width = "0.7\\linewidth", size = "tiny">>=
 library(lattice)
 
 xyplot(y.tissue ~ lat,
        data = calibration)
 @
 \column[b]{0.32\linewidth}
-<<ggplot_eg, out.width = "0.7\\linewidth", out.height = "0.7\\linewidth", message = FALSE, size = "tiny">>=
+<<ggplot_eg, out.width = "0.7\\linewidth", warning = FALSE, size = "tiny">>=
 library(ggplot2)
 
 ggplot(data = calibration,
@@ -522,7 +523,7 @@ ggplot(data = calibration,
   geom_point()
 @
 \end{columns}
-Whatever you are using, plotting your data in very important! Defaults are always quite ugly!!
+Whatever you are using, plotting your data is very important! Defaults are always quite ugly!!
 \end{frame}
 
 
@@ -530,15 +531,20 @@ Whatever you are using, plotting your data in very important! Defaults are alway
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile, t]{17. How to use \texttt{\{ggplot2\}} for an efficient production of plots?}
-Idea: all plots are composed of the same elements (data + \textbf{aes}thetic mappings + \textbf{scale}s + a \textbf{coord}inate system + a \textbf{facet}ing specification + a \textbf{theme})\\
+All plots are composed of the same elements:\\
+\vspace{1em}
+\begin{scriptsize}
+\textbf{data} + \textbf{aes}thetic mappings + \textbf{geom}etries + \textbf{scale}s + a \textbf{coord}inate system + a \textbf{theme} + a \textbf{facet}ing specification\\
+(the first 3 are mandatory, the last 4 are not since they have default presets)\\
+\end{scriptsize}
 \vspace{1em}
 We then build a plot by adding such components together:\\
 \vspace{1em}
-<<layer_multiples_layers, out.width = "0.3\\linewidth", out.height = "0.2\\linewidth", message = FALSE, size = "tiny">>=
+<<layer_multiples_layers, out.width = "0.3\\linewidth", out.height = "0.2\\linewidth", warning = FALSE, size = "tiny">>=
 ggplot(calibration) +
   aes(x = lat, y = y.tissue, colour = site) +
   geom_point() +
-  geom_rug(sides = "l") + ## l for right!
+  geom_rug(sides = "l") + ## l for left!
   scale_x_continuous("Lattitude") +
   theme_minimal()
 @
@@ -554,23 +560,23 @@ ggplot(calibration) +
 Update:
 \begin{itemize}
 \item \r\ (at least once a year)
-\item RStudio (at least twice a year)
+\item RStudio (after each update of \r)
 \item packages (at least once a month)
 \end{itemize}
 \vspace{1em}
 For packages:
 \begin{center}
-\includegraphics[height=0.7\textheight]{figures/RStudio_packages_update.png}
+\includegraphics[height=0.6\textheight]{figures/RStudio_packages_update.png}
 \end{center}
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{How to reach level A2/B1?}
+\section{How to reach the level A2/B1?}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{19. How to reach level A2/B1?}
+\begin{frame}{19. How to reach the level A2/B1?}
 There are many resources available at your disposal:
 \begin{columns}
 \column{0.6\linewidth}
@@ -597,7 +603,7 @@ There are many resources available at your disposal:
 \begin{subfigure}[b]{2.4cm}
 \centering
 \includegraphics[height=3.5cm]{figures/Book_r4ds.png}
-\caption*{$\sim 0\ or\ 60$ \euro}
+\caption*{$\sim 0$ or $60$ \euro}
 \end{subfigure}
 \begin{subfigure}[b]{2.4cm}
 \centering
@@ -631,7 +637,7 @@ This is not beyond your reach!
 \item try to contribute to collaborative \r\ projects (e.g. on GitHub)
 \end{itemize}
 \vfill
-If you persist, you will become very good at \r\ not matter how difficult you may find it now!
+If you persist, you will become very good at \r\ no matter how difficult you may find it now!
 \end{frame}
 
 \end{document}
