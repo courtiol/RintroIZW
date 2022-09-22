@@ -298,15 +298,15 @@ In \r, it is easy to write synonymous code that \emph{looks} very different:
 
 Example 1:
 <<complex fn call 1>>=
-round(mean(c(1, 4, 10))/sd(c(1, 4, 10)), 2)
+round(sd(c(1, 4, 10))/mean(c(1, 4, 10)), 2)
 @
 \vfill
 \pause
 Example 2:
 <<complex fn call 2>>=
 c(1, 4, 10) |>
-  mean() |>
-  prod(1/sd(c(1, 4, 10))) |>
+  sd() |>
+  prod(1/mean(c(1, 4, 10))) |>
   round(2)
 @
 \vfill
@@ -385,7 +385,7 @@ calibration
 Most functions doing something more complicated than simple arithmetic produce lists:\\
 <<>>=
 calib2sp <- calibration[calibration$site %in% c("A", "C"), ]
-test_calib2sp <- t.test(y.tissue ~ lat, data = calib2sp)
+test_calib2sp <- t.test(y.tissue ~ site, data = calib2sp)
 @
 \pause
 \begin{columns}[T]
