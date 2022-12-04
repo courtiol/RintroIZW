@@ -24,7 +24,7 @@
 \hspace{2cm}
 \includegraphics[height=2cm]{figures/FU}
 }
-\date[February 2022]{\small February 2022}%
+\date[December 2022]{\small December 2022}%
 
 \begin{document}
 \selectmanualcolour{blue!75!black}%set main colour
@@ -140,7 +140,7 @@ Key points (general):
   %\item set the internet proxy: 192.168.2.2:3128 (necessary at IZW, but usually not)
   %\item check that you do get internet access
   \item install \r: \url{https://cran.r-project.org/}
-  \item install RStudio: \url{https://www.rstudio.com/products/rstudio/download/}
+  \item install RStudio: \url{https://posit.co/download/rstudio-desktop/}
   \item open RStudio
   \end{enumerate}
 \end{frame}
@@ -226,7 +226,7 @@ You can use \r \ without RStudio, but RStudio is:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{My tips about the global options}
-1. I never save or restore the workspace \underline{and so should you} (default settings are DANGEROUS)
+1. I never save or restore the workspace and so should you (default settings are DANGEROUS)
 \begin{center}
 \includegraphics[height=0.8\textheight]{figures/RStudio_settings.png}
 \end{center}
@@ -235,7 +235,7 @@ You can use \r \ without RStudio, but RStudio is:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{My tips about the global options}
-2. I don't like parentheses and quotes auto-completion, but you may
+2. I don't like parentheses and quotes auto-completion \& I like the native pipe
 \begin{center}
 \includegraphics[height=0.8\textheight]{figures/RStudio_settings2.png}
 \end{center}
@@ -244,7 +244,7 @@ You can use \r \ without RStudio, but RStudio is:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{My tips about the global options}
-3. I activate all the code diagnostics offered by RStudio!
+3. I activate all the code diagnostics (but one) offered by RStudio!
 \begin{center}
 \includegraphics[height=0.8\textheight]{figures/RStudio_settings3.png}
 \end{center}
@@ -253,7 +253,7 @@ You can use \r \ without RStudio, but RStudio is:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{My tips about the global options}
-4. I sometimes use a black theme (do as you please)
+4. I sometimes use a black theme
 \begin{center}
 \includegraphics[height=0.8\textheight]{figures/RStudio_settings4.png}
 \end{center}
@@ -262,7 +262,7 @@ You can use \r \ without RStudio, but RStudio is:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{My tips about the global options}
-5. I sometimes put the \texttt{source} and the \texttt{console} panes side-by-side to give them more vertical space on the screen (do as you please)
+5. I usually put the \texttt{Source} and the \texttt{Console} panes side-by-side
 \begin{center}
 \includegraphics[height=0.8\textheight]{figures/RStudio_settings5.png}
 \end{center}
@@ -401,7 +401,7 @@ one_plus_one_plus_one
 \begin{itemize}[<+->]
 \item \verb+->+ works too (if you switch the left hand side and the right hand side)
 \item ``\texttt{\_}'' and ``\texttt{.}'' are OK but avoid spaces \& other weird characters in names
-\item names are case sensitive
+\item names are CaSe sensITIVE
 \end{itemize}
 \end{frame}
 
@@ -429,7 +429,7 @@ help(citation) ## getting help for this function
 @
 \vfill
 \pause
-\textbf{NB:} best to look at the help before using a function new to you!
+\textbf{NB:} it is best to look at the help before using a function new to you!
 \end{frame}
 
 
@@ -497,7 +497,8 @@ Arguments:
 
 
 \begin{frame}[fragile]{Functions}
-All these calls are similar:
+All these calls are equivalent:
+
 <<>>=
 mean(x = c(1, 5, 3, 4))
 @
@@ -513,6 +514,18 @@ mean(x = vector.of.numbers)
 
 <<>>=
 mean(vector.of.numbers)
+@
+
+<<>>=
+c(1, 5, 3, 4) |> mean() ## see ?pipeOp
+@
+
+<<>>=
+vector.of.numbers |> mean()
+@
+
+<<>>=
+vector.of.numbers |> mean(x = _)
 @
 \end{frame}
 
@@ -549,7 +562,7 @@ help.search(pattern = "linear model", package = "stats")  ## if you know where t
 or
 
 \begin{center}
-\includegraphics[height = 4cm]{figures/RStudio_search_fn.png}
+\includegraphics[height = 5cm]{figures/RStudio_search_fn.png}
 \end{center}
 \end{frame}
 
@@ -665,7 +678,7 @@ That is always simple:
 library(tidyverse)
 @
 \vfill
-Contrary to the installation that is only needed once per \r \ installation, loading the libraries you need must be done each time you open an \r \ session!
+Contrary to the installation that is only needed once per \r \ installation, you need to load the libraries each time you open a new \r \ session!
 \end{frame}
 
 
@@ -752,7 +765,7 @@ str(iris)
 The most common class of objects used for storing data in \r \ is the \underline{data frame}!\\
 \vspace{1em}
 \begin{itemize}
-\item each column is a variable, usually corresponding to a \underline{vector} (a series of elements of 1 type)
+\item each column usually corresponds to a \underline{vector} (a series of elements of 1 type)
 \item all columns have the same length (rectangular format)
 \item contains column names (usually informative) and row names (usually not informative)
 \end{itemize}
@@ -784,7 +797,7 @@ The most common class of objects used for storing data in \r \ is the \underline
 \end{columns}
 \vspace{1em}
 \pause
-\textbf{Tip:} if some function struggle with tibble, try using original data frames
+\textbf{Tip:} functions working with data frames usually work fine with tibbles, but in case of problems just try converting your tibble into an original data frame using \texttt{as.data.frame()}
 \end{frame}
 
 
@@ -833,7 +846,7 @@ There are two competing paradigms for manipulating data in \r:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile, t]{Vector based approach}
-\textbf{Goal:} computing the mean and SD of sepal length in mm for per species
+\textbf{Goal:} computing the mean and SD of sepal length in mm per species
 
 \vfill
 <<vector way>>=
@@ -843,7 +856,7 @@ iris$Sepal.Length.mm <- iris$Sepal.Length * 10
 ## create data frame to store results
 results <- data.frame(Species = unique(iris$Species))
 
-## compute the means and SD per species
+## compute the mean and SD per species
 for (sp in unique(results$Species)) {
   results$meanSL[results$Species == sp] <- mean(iris$Sepal.Length.mm[iris$Species == sp])
   results$sdSL[results$Species == sp]   <- sd(iris$Sepal.Length.mm[iris$Species == sp])
@@ -857,7 +870,7 @@ results
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile, t]{Data frame based approach}
-\textbf{Goal:} computing the mean and SD of sepal length in mm for per species
+\textbf{Goal:} computing the mean and SD of sepal length in mm per species
 
 \vfill
 <<echo = FALSE>>=
@@ -870,7 +883,7 @@ iris <- mutate(iris, Sepal.Length.mm = Sepal.Length * 10)
 ## declare that you will perform operations within species
 iris <- group_by(iris, Species)
 
-## compute the means and SD per species
+## compute the mean and SD per species
 results <- summarise(iris, meanSL = mean(Sepal.Length.mm),
                            sdSL   = sd(Sepal.Length.mm))
 
@@ -882,7 +895,7 @@ results
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile, t]{Data frame based approach with pipes (\texttt{|>} or \texttt{\%>\%})}
-\textbf{Goal:} computing the mean and SD of sepal length in mm for per species
+\textbf{Goal:} computing the mean and SD of sepal length in mm per species
 
 \vspace{1em}
 <<echo = FALSE>>=
@@ -906,10 +919,10 @@ results
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{The \texttt{\{tidyverse\}}}
-The tidyverse packages (\url{https://www.tidyverse.org}) are developed by RStudio
+The tidyverse (\url{https://www.tidyverse.org}) is an ecosystem of R packages.
 
 \vspace{1em}
-There are 8 core tidyverse packages:
+There are 8 core `tidy' packages:
 
 \begin{center}
 \raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-tidyverse"}}
@@ -929,7 +942,7 @@ There are 8 core tidyverse packages:
 \item philosophy: making \r \ more accessible and more modern\\ % modern as linked to new libraries that are very efficient
 \item more functions, more focussed: 1 function = 1 action = 1 verb
 \item backward compatibility is not the absolute priority
-\item financed and controlled by RStudio
+\item open-source (collaborative) development supervised by Posit (formerly known as RStudio)
 \end{itemize}
 \end{frame}
 
@@ -947,7 +960,7 @@ You can do a lot with 5 functions:\\
 \item \texttt{select()}    to keep or discard columns
 \item \texttt{group\_by()} to define groups of rows for the following verbs
 \item \texttt{filter()}    to keep or discard rows
-\item \texttt{mutate()}    to create new columns
+\item \texttt{mutate()}    to create or modify columns
 \item \texttt{summarise()} to compute summary statistics
 \end{itemize}
 \vfill
@@ -1124,7 +1137,7 @@ TIP:
 \textbf{NB:}
 \begin{itemize}
 \item the same apply for many other file formats!
-\item if you don't see "From Text (readr)" then you must install \verb`{readr}`
+\item if you don't see "\textbf{From Text (readr)}" then you must install \verb`{readr}`
 \end{itemize}
 \end{frame}
 
@@ -1134,7 +1147,7 @@ TIP:
 \begin{frame}[fragile]{Practice}
 \begin{center}
 \begin{large}
-Create a dataframe using your favourite spreadsheet software\\ and import it in \r!
+Create a data frame using your favourite spreadsheet software\\ and import the data in \r!
 \end{large}
 \end{center}
 \end{frame}
@@ -1165,7 +1178,7 @@ There are many plotting systems in \r, such as:
 \begin{frame}[fragile]{Practice: \r \ Graph Gallery}
 \begin{center}
 \begin{large}
-Browse \url{https://www.r-graph-gallery.com} and try to reproduce one plot you like!
+Browse \url{https://r-graph-gallery.com} and try to reproduce one plot you like!
 \end{large}
 \end{center}
 \vfill
@@ -1185,13 +1198,14 @@ Browse \url{https://www.r-graph-gallery.com} and try to reproduce one plot you l
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile, t]{You can make nice plots with \texttt{\{ggplot2\}} and companion packages}
-\only<1-2>{@CedScherer}
+\only<1>{@ldbailey255}
+\only<2>{@CedScherer / @CedScherer@vis.social}
 \only<3>{@geokaramanis}
 \only<4>{@\_Alexis\_69\_}
 \only<5>{@grssnbchr}
 \begin{center}
-\only<1>{\includegraphics[height = 7cm]{figures/2020_08_CarbonFoodprint_alt}}
-\only<2>{\includegraphics[height = 7cm]{figures/2020_23_MarbleRaces}}
+\only<1>{\includegraphics[height = 7cm]{figures/Week32_Liam}}
+\only<2>{\includegraphics[height = 7cm]{figures/2020_08_CarbonFoodprint_alt}}
 \only<3>{\includegraphics[height = 7cm]{figures/ggplot2_slavery}}
 \only<4>{\includegraphics[height = 7cm]{figures/ggplot2_velos}}
 \only<5>{\includegraphics[height = 7cm]{figures/ggplot2_swiss}}
@@ -1226,7 +1240,7 @@ ggplot(iris) + ## the data
 @
 \vfill
 \pause
-\textbf{Note:} here, we use the default settings for the scales, coordinate system, faceting specification, and the theme -- so they don't need to be explicitly set
+\textbf{Note:} here, we use the default settings for the scales, coordinate system, faceting specification, and the theme -- they don't need to be explicitly set
 \end{frame}
 
 
@@ -1367,8 +1381,7 @@ Examples of aesthetics:
   \item shape: \texttt{shape} and \texttt{linetype}
 \end{itemize}
 \vfill
-\pause
-\textbf{Tip:} check the help of the geoms you want to use to know which aesthetics can be used!
+\textbf{Tip:} check the help of the geom(s) you want to use to know which aesthetics can be used!
 \end{frame}
 
 
@@ -1400,7 +1413,7 @@ ggplot(iris) +
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile, t]{Aesthetics: where to provide the aesthetic mappings?}
-Aesthetics \underline{not} mapped to the data should not be part of any \texttt{aes()} call!\\
+Aesthetics \underline{not} mapped to the data should not be part of any call to \texttt{aes()}!\\
 \vspace{1em}
 <<aes2>>=
 ggplot(iris) +
@@ -1444,7 +1457,7 @@ ggplot(iris) +
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile, t]{Facets}
-You can use \verb`facet_*()` to shows different subset of the data separately; e.g.:\\
+You can use \verb`facet_*()` to show different subsets of the data separately; e.g.:\\
 \vspace{1em}
 <<facet wrap>>=
 ggplot(iris) +
@@ -1521,7 +1534,7 @@ ggplot(iris) +
         axis.title = element_text(face = "italic", hjust = 1),
         panel.grid.major.x = element_line(linetype = "dotted", colour = "black"),
         panel.background = element_rect(fill = "lightgreen"),
-        plot.background = element_rect(fill = "dodgerblue", colour = "goldenrod", size = 10))
+        plot.background = element_rect(fill = "dodgerblue", colour = "goldenrod", linewidth = 10))
 @
 \end{frame}
 
@@ -1539,7 +1552,7 @@ ggplot(iris) +
   aes(x = Sepal.Length, y = Sepal.Width) +
   geom_point() +
   labs(x = "Length", y = "Width",
-       title = "Sepal morphology", subtitle = "a short analysis of the iris dataset",
+       title = "Sepal morphology", subtitle = "a toy analysis of the iris dataset",
        caption = "Dataset provided by R",
        tag = "A).")
 @
@@ -1574,12 +1587,12 @@ for (i in 1:4) {
     print(x = "found 2!")
   } else {
     print(x = "found something other than 2")
-    }
+  }
 }
 @
 \vspace{1em}
 \pause
-You can check the help files for such functions as follow:
+You can check the help files for such functions as follows:
 <<tidy=F, eval=F>>=
 ?"for"
 @
@@ -1590,6 +1603,9 @@ You can check the help files for such functions as follow:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{You can create your own \r \ functions!}
+Creating functions only requires you to name the function \&\\
+to rely on placeholders (i.e. arguments) to pass values:\\
+\vspace{1em}
 <<>>=
 OddsRatio <- function(proba.x, proba.y) {
   odd.x <- proba.x/(1 - proba.x)
@@ -1690,17 +1706,17 @@ Journal of Statistical Software, \r \ Journal, Journal of Open Source Software \
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Become part of the \r \ community!}
 \begin{columns}[T]
-\column{0.45\linewidth}
+\column{0.6\linewidth}
 \begin{itemize}
 \item face-to-face interactions:
 \begin{itemize}
 \begin{scriptsize}
-\item Meetup Berlin R Users Group
-\item Meetup R-Ladies Berlin
+\item Meetup Berlin R Users Group (\url{https://www.meetup.com/Berlin-R-Users-Group})
+\item R-Ladies (\url{https://rladies.org/germany-rladies})
 \item SATRDAYS (\url{https://satrdays.org/events})
 \item European R Users Meeting (\url{https://erum.io})
-\item \texttt{rstudio::conf}\\ (\url{https://www.rstudio.com/conference})
-\item useR!
+\item \texttt{rstudio::conf} (\url{https://posit.co/conference})
+\item useR! (\url{https://www.r-project.org/conferences})
 \end{scriptsize}
 \end{itemize}
 \vfill
@@ -1724,7 +1740,7 @@ Journal of Statistical Software, \r \ Journal, Journal of Open Source Software \
 \end{itemize}
 \end{itemize}
 \pause
-\column{0.55\linewidth}
+\column{0.4\linewidth}
 \begin{itemize}
 \item twitter:
 \begin{itemize}
@@ -1732,6 +1748,13 @@ Journal of Statistical Software, \r \ Journal, Journal of Open Source Software \
 \item \#rstats
 \item \#tidyverse
 \item @rdataberlin (and check the people I follow in there)
+\end{scriptsize}
+\end{itemize}
+\item mastodon:
+\begin{itemize}
+\begin{scriptsize}
+\item fosstodon.org
+\item \#rstats
 \end{scriptsize}
 \end{itemize}
 \end{itemize}
