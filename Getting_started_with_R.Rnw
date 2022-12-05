@@ -348,6 +348,8 @@ Inf/Inf
 \pause
 \vspace{1em}
 As for most other programming languages, avoid equality tests for floating-point numbers!
+% https://www.gao.gov/assets/imtec-92-26.pdf
+% https://web.ma.utexas.edu/users/arbogast/misc/disasters.html
 <<logic4>>=
 0.8 - 0.3 - 0.5 == 0.8 - 0.5 - 0.3
 ## check later ?all.equal() and ?dplyr::near()
