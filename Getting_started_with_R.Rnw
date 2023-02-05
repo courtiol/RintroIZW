@@ -882,12 +882,10 @@ rm(iris)
 ## create a new column storing the sepal length in mm
 iris <- mutate(iris, Sepal.Length.mm = Sepal.Length * 10)
 
-## declare that you will perform operations within species
-iris <- group_by(iris, Species)
-
 ## compute the mean and SD per species
 results <- summarise(iris, meanSL = mean(Sepal.Length.mm),
-                           sdSL   = sd(Sepal.Length.mm))
+                           sdSL   = sd(Sepal.Length.mm),
+                           .by = Species) # declare that you will perform operations within species
 
 ## display the result
 results
@@ -906,9 +904,9 @@ rm(iris)
 <<data frame pipe way>>=
 iris |>
   mutate(Sepal.Length.mm = Sepal.Length * 10) |>
-  group_by(Species) |>
   summarise(meanSL = mean(Sepal.Length.mm),
-            sdSL   = sd(Sepal.Length.mm)) -> results
+            sdSL   = sd(Sepal.Length.mm),
+            .by = Species) -> results
 results
 @
 \pause
@@ -955,19 +953,22 @@ There are 8 core `tidy' packages:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile, t]{Manipulating data frames with \texttt{\{dplyr\}}}
-You can do a lot with 5 functions:\\
+You can do a lot with 4 functions:\\
 \vspace{1em}
 \pause
 \begin{itemize}
 \item \texttt{select()}    to keep or discard columns
-\item \texttt{group\_by()} to define groups of rows for the following verbs
 \item \texttt{filter()}    to keep or discard rows
 \item \texttt{mutate()}    to create or modify columns
 \item \texttt{summarise()} to compute summary statistics
 \end{itemize}
 \vfill
 \pause
-{\bf Note:} this is much more than that in \texttt{\{dplyr\}}
+{\bf Notes:} 
+\begin{itemize}
+\item this is much more than that in \texttt{\{dplyr\}}
+\item you can use the argument \texttt{.by} to define groups of rows when using \texttt{filter()}, \texttt{mutate()} or \texttt{summarise()}
+\end{itemize}
 \end{frame}
 
 
@@ -999,13 +1000,13 @@ iris_tbl |> filter(Sepal.Length > 7, Sepal.Width > 3)
 @
 \pause
 \vspace{1em}
-Keep rows using \verb`group_by() |> filter()`:\\
+Keep rows per group using \texttt{filter(..., .by = xxx)}:\\
 <<filter details2>>=
-iris_tbl |> group_by(Species) |> filter(Sepal.Length == max(Sepal.Length)) |> ungroup()
+iris_tbl |> filter(Sepal.Length == max(Sepal.Length), .by = Species)
 @
 \pause
 \vfill
-{\bf Tip:} ungrouping prevents further (unwanted) grouped operations
+{\bf Tip:} using \texttt{.by} is safer than \verb`group_by()` because the grouping is not persistent
 \end{frame}
 
 
@@ -1016,9 +1017,9 @@ Create a column using \texttt{mutate()}:\\
 iris_tbl |> mutate(Sepal.Length.mm = Sepal.Length * 10)
 @
 \pause
-Create a column using  \verb`group_by() |> mutate()`:\\
+Create a column based on values per group using \texttt{mutate(..., .by = xxx)}:\\
 <<mutate details2>>=
-iris_tbl |> group_by(Species) |> mutate(Sepal.Length.max = max(Sepal.Length)) |> ungroup()
+iris_tbl |> mutate(Sepal.Length.max = max(Sepal.Length), .by = Species)
 @
 \pause
 \vfill
@@ -1033,13 +1034,13 @@ Compute summary statistics using \texttt{summarise()}:\\
 iris_tbl |> summarise(Sepal.Length.max = max(Sepal.Length), N = n())
 @
 \pause
-Compute summary statistics using  \verb`group_by() |> summarise()`:\\
+Compute summary statistics per group using \texttt{summarise(..., .by = xxx)}:\\
 <<summarise details2>>=
-iris_tbl |> group_by(Species) |> summarise(Sepal.Length.max = max(Sepal.Length), N = n())
+iris_tbl |> summarise(Sepal.Length.max = max(Sepal.Length), N = n(), .by = Species)
 @
 \pause
 \vfill
-{\bf Tip:} \verb`summarise()` ungroup automatically (if there is a single grouping variable)
+{\bf Tip:} \verb`summarise()` can only return one row per group;  \verb`reframe()` is more flexible
 \end{frame}
 
 
@@ -1067,11 +1068,11 @@ Assuming petals are rectangular, compute:\\
 <<echo = FALSE, eval = FALSE>>=
 iris |>
   mutate(area_petal = Petal.Length * Petal.Width) |>
-  group_by(Species) |>
   summarise(mean = mean(area_petal),
             median = median(area_petal),
             min = min(area_petal),
-            max = max(area_petal))
+            max = max(area_petal),
+            .by = Species)
 @
 \end{frame}
 \selectmanualcolour{blue!75!black}
