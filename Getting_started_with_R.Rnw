@@ -24,7 +24,7 @@
 \hspace{2cm}
 \includegraphics[height=2cm]{figures/FU}
 }
-\date[December 2022]{\small December 2022}%
+\date[February 2023]{\small February 2023}%
 
 \begin{document}
 \selectmanualcolour{blue!75!black}%set main colour
