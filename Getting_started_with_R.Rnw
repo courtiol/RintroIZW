@@ -1405,7 +1405,7 @@ ggplot(iris) +
 \begin{frame}[fragile, t]{Aesthetics: where to provide the aesthetic mappings?}
 You can split the definition of global and local aesthetic mappings:\\
 \vspace{1em}
-<<aes quad>>=
+<<aes2>>=
 ggplot(iris) +
   aes(x = Sepal.Length, y = Sepal.Width) +
   geom_point() +
@@ -1418,7 +1418,7 @@ ggplot(iris) +
 \begin{frame}[fragile, t]{Aesthetics: where to provide the aesthetic mappings?}
 Aesthetics \underline{not} mapped to the data should not be part of any call to \texttt{aes()}!\\
 \vspace{1em}
-<<aes2>>=
+<<aes3>>=
 ggplot(iris) +
   aes(x = Sepal.Length, y = Sepal.Width) +
   geom_point(colour = "blue")
@@ -1449,7 +1449,7 @@ ggplot(iris) +
 \begin{frame}[fragile, t]{Coordinates}
 You can use \verb`coord_*()` to modify how graphical elements are projected on a plan; e.g.:\\
 \vspace{1em}
-<<coord log>>=
+<<coord_log>>=
 ggplot(iris) +
   aes(x = Sepal.Length, y = Sepal.Width, colour = Species) +
   geom_point() + 
@@ -1462,7 +1462,7 @@ ggplot(iris) +
 \begin{frame}[fragile, t]{Facets}
 You can use \verb`facet_*()` to show different subsets of the data separately; e.g.:\\
 \vspace{1em}
-<<facet wrap>>=
+<<facet_wrap>>=
 ggplot(iris) +
   aes(x = Sepal.Length, y = Sepal.Width) +
   geom_point() +
@@ -1497,24 +1497,24 @@ Themes control the display of all elements of the plot that do not depend on you
 \begin{frame}[fragile, t]{Themes: pre-defined themes}
 There are many predefined themes in \verb+{ggplot2}+ and companion packages (e.g. \verb+{ggthemes}+):\\
 \vspace{1em}
-<<theme baseline>>=
+<<theme_baseline>>=
 ggplot(iris) +
   aes(x = Sepal.Length, y = Sepal.Width, colour = Species) +
   geom_point() -> myplot
 @
 \begin{columns}
 \column{0.3\linewidth}
-<<theme void, out.width = "\\linewidth">>=
+<<theme_void, out.width = "\\linewidth">>=
 myplot +
   theme_void()
 @
 \column{0.3\linewidth}
-<<theme dark, out.width = "\\linewidth">>=
+<<theme_dark, out.width = "\\linewidth">>=
 myplot +
   theme_dark()
 @
 \column{0.3\linewidth}
-<<theme minimal, out.width = "\\linewidth">>=
+<<theme_minimal, out.width = "\\linewidth">>=
 myplot +
   theme_minimal(base_size = 20)
 @
