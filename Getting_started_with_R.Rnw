@@ -1637,7 +1637,7 @@ OddsRatio(0.1, 0.01)
 update.packages(ask = FALSE)  ## or use RStudio menus
 @
 \item update \r \ from time to time $\rightarrow$ at least once a year in spring\\
-do it manually, or try \verb+{InstallR}+ on Windows, or \verb+{UpdateR}+ on macOS
+do it manually, or try \verb+{installr}+ or \verb+{updater}+ on Windows
 \item update RStudio from time to time $\rightarrow$ at least after each update of \r
 \end{itemize}
 \vfill
