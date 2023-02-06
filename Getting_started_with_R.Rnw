@@ -790,7 +790,7 @@ The most common class of objects used for storing data in \r \ is the \underline
 \begin{center}
 \begin{block}{\centering modern data frames: tibbles\\ (class \texttt{tbl\_df})}
 \begin{itemize}
-  \item improved display (see \verb+?formatting+)
+  \item improved display (see \verb+?pillar_options+)
   \item lazier \& \underline{safer} (see \verb+?`tbl_df-class`+)
   \item more flexible (work well with groupings)
 \end{itemize}
@@ -859,7 +859,7 @@ iris$Sepal.Length.mm <- iris$Sepal.Length * 10
 results <- data.frame(Species = unique(iris$Species))
 
 ## compute the mean and SD per species
-for (sp in unique(results$Species)) {
+for (sp in results$Species) {
   results$meanSL[results$Species == sp] <- mean(iris$Sepal.Length.mm[iris$Species == sp])
   results$sdSL[results$Species == sp]   <- sd(iris$Sepal.Length.mm[iris$Species == sp])
 }
