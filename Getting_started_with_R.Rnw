@@ -15,7 +15,7 @@
 \def\r{{\bf R}}
 
 \title{Getting started with R}
-\author[IZW]{Alexandre Courtiol @rdataberlin}
+\author[IZW]{Alexandre Courtiol @datazoogang.de $\vcenter{\hbox{\includegraphics[height=1em]{figures/bluesky}}}$}
 \institute[]{Leibniz Institute of Zoo and Wildlife Research}%
 \titlegraphic{
 \vspace{1cm}
@@ -24,7 +24,7 @@
 \hspace{2cm}
 \includegraphics[height=2cm]{figures/FU}
 }
-\date[February 2023]{\small February 2023}%
+\date[February 2024]{\small February 2024}%
 
 \begin{document}
 \selectmanualcolour{blue!75!black}%set main colour
@@ -89,8 +89,8 @@ Key points (general):
 \item open (\url{https://github.com/wch/r-source})
 \item honest (\url{https://bugs.r-project.org/bugzilla})
 \item scalable (laptop/supercomputer; local/remote; Windows/MacOS/Linux/Unix)
-\item rich (\url{https://rdrr.io}; \url{https://www.rdocumentation.org})
-\item up to date (\url{http://dirk.eddelbuettel.com/cranberries/cran/updated})
+\item rich\\ (\url{https://rdrr.io}; \url{https://www.rdocumentation.org}; \url{https://r-universe.dev})
+\item up to date (\url{https://dirk.eddelbuettel.com/cranberries/cran/updated})
 \item friendly community (more on that later)
 \end{itemize}
 \end{frame}
@@ -589,7 +589,7 @@ Key facts about packages:
 \item a library is the installed version of the package (also a folder)
 \item there are tons of packages out there:
 
-\url{https://rdrr.io}; \url{https://www.rdocumentation.org}
+\url{https://rdrr.io}; \url{https://www.rdocumentation.org}; \url{https://r-universe.dev}
 \end{itemize}
 
 %\vfill
@@ -922,19 +922,20 @@ results
 The tidyverse (\url{https://www.tidyverse.org}) is an ecosystem of R packages.
 
 \vspace{1em}
-There are 8 core `tidy' packages:
+There are currently 9 core `tidy' packages:
 
 \begin{center}
 \raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-tidyverse"}}
 =
-\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-tibble"}}
-\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-readr"}}
-\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-dplyr"}}
-\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-stringr"}}
-\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-forcats"}}
-\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-tidyr"}}
-\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-ggplot2"}}
-\raisebox{-0.5\height}{\includegraphics[width = 1.5cm]{"figures/tidyverse/hex-purrr"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1cm]{"figures/tidyverse/hex-tibble"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1cm]{"figures/tidyverse/hex-readr"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1cm]{"figures/tidyverse/hex-dplyr"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1cm]{"figures/tidyverse/hex-stringr"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1cm]{"figures/tidyverse/hex-lubridate"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1cm]{"figures/tidyverse/hex-forcats"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1cm]{"figures/tidyverse/hex-tidyr"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1cm]{"figures/tidyverse/hex-ggplot2"}}
+\raisebox{-0.5\height}{\includegraphics[width = 1cm]{"figures/tidyverse/hex-purrr"}}
 \end{center}
 \pause
 \vfill
@@ -1715,7 +1716,7 @@ Journal of Statistical Software, \r \ Journal, Journal of Open Source Software \
 \begin{itemize}
 \begin{scriptsize}
 \item Meetup Berlin R Users Group (\url{https://www.meetup.com/Berlin-R-Users-Group})
-\item R-Ladies (\url{https://rladies.org/germany-rladies})
+\item R-Ladies (\url{https://rladies.org})
 \item SATRDAYS (\url{https://satrdays.org/events})
 \item European R Users Meeting (\url{https://erum.io})
 \item \texttt{rstudio::conf} (\url{https://posit.co/conference})
@@ -1745,12 +1746,11 @@ Journal of Statistical Software, \r \ Journal, Journal of Open Source Software \
 \pause
 \column{0.4\linewidth}
 \begin{itemize}
-\item twitter:
+\item X:
 \begin{itemize}
 \begin{scriptsize}
 \item \#rstats
 \item \#tidyverse
-\item @rdataberlin (and check the people I follow in there)
 \end{scriptsize}
 \end{itemize}
 \item mastodon:
@@ -1760,6 +1760,8 @@ Journal of Statistical Software, \r \ Journal, Journal of Open Source Software \
 \item \#rstats
 \end{scriptsize}
 \end{itemize}
+\item bluesky
+\item LinkedIn
 \end{itemize}
 \end{columns}
 \end{frame}
