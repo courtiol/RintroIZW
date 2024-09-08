@@ -14,17 +14,17 @@
 
 \def\r{{\bf R}}
 
-\title{20 Things to Know About \r}
-\author[Alex / \url{www.datazoogang.de} / @rdataberlin]{Alexandre Courtiol}
+\title[R intro course for summer school on isotopes]{20 Things to Know About \r \ \& a couple of things to know about stats}
+\author[Alex | \url{www.datazoogang.de}]{Alexandre Courtiol}
 \institute[]{Leibniz Institute of Zoo and Wildlife Research}%
 \titlegraphic{
 \vspace{1cm}
 \centering
 \includegraphics[height=1.5cm]{figures/izw_logo}
-\hspace{2cm}
-\includegraphics[height=1.5cm]{figures/FU}
+%\hspace{2cm}
+%\includegraphics[height=1.5cm]{figures/FU}
 }
-\date[September 2022]{\small September 2022}%
+\date[September 2024]{\small September 2024}%
 
 \begin{document}
 \selectmanualcolour{blue!75!black}%set main colour
@@ -35,9 +35,9 @@ options(width = 100,
         tibble.print_min = 3,
         tibble.print_max = 3)
 library(knitr)
-opts_chunk$set("size" = "scriptsize",
-               "error" = TRUE,
-               "fig.align" = "center",
+opts_chunk$set(size = "scriptsize",
+               error = TRUE,
+               fig.align = "center",
                fig.width = 6,
                fig.asp = 0.64,
                out.width = "7cm",
@@ -50,13 +50,31 @@ opts_chunk$set("size" = "scriptsize",
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{Poll}
+How would you rate your \r-language proficiency, from A0 to C2?
+
+\begin{footnotesize}
+\begin{itemize}
+\item \textbf{A0}\\ no experience of \r \ what-so-ever
+\item \textbf{A1}\\ read a well coded \r\ script and understand the main ideas
+\item \textbf{A2}\\ use RStudio, import data, do simple clean-up tasks \& simple plots\\ (with heavy help from stackoverflow or chatGPT)
+\item \textbf{B1}\\ no longer get stuck with typos, code simple functions, produce rmarkdown or quarto reports, use most core \texttt{tidyverse} packages with ease, some knowledge of base \r
+\item \textbf{B2}\\ code complex functions, create simple packages, understand how to use new packages quickly, solid knowledge of base \r
+\item \textbf{C1}\\ write elegant \& efficient code, supervise the development of large packages, code functions tackling scoping difficulties, code bottlenecks in other languages\dots
+\item \textbf{C2}\\ able to help C1-level people in a variety of tricky circumstances
+\end{itemize}
+\end{footnotesize}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{20 Things to Know About \r}
   \setcounter{tocdepth}{1}
   \begin{scriptsize}
   \tableofcontents
   \end{scriptsize}
 \end{frame}
-
 
 \section{What are \r\ and RStudio?}
 
@@ -65,21 +83,22 @@ opts_chunk$set("size" = "scriptsize",
 Why learning \r?
 \vspace{1em}
 \begin{itemize}
-\item best software out there for most data science tasks
+\item among the best software and programming language dedicated to data science
+\item rich in functionality with close to 100,000 free packages\\ {\scriptsize (\url{https://rdrr.io}, \url{https://r-universe.dev})}
+\item large friendly community\\ {\scriptsize (X \#rstats, \url{https://dslcio.slack.com}, \url{https://forum.posit.co/}, gatherings)}
 \item open source and free
-\item possible to learn for people with no background in computer science
-\item rich in functionality with close to 100,000 free packages\\ {\scriptsize (\url{https://rdrr.io}; \url{https://www.rdocumentation.org})}
-\item friendly large community\\ {\scriptsize (twitter \#rstats, \url{https://rfordatascience.slack.com}, \url{https://community.rstudio.com}, gatherings)}
 \end{itemize}
 \vfill
 RStudio is a GUI to \r\ that is fancier and more modern than the one provided by default
+\vfill
+{\footnotesize Note: RStudio is currently loosing ground against Visual Studio Code among geeks, but Posit is fighting back by developing Positron}
 \end{frame}
 
 
 \section{How to best setup \r\ \& RStudio?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{2. How to best setup \r\ \& RStudio?}
+\begin{frame}[fragile]{2a. How to best setup \r\ \& RStudio?}
 Open: Menu / Tools / Global options and set things as follows:
 \begin{columns}
 \column{0.5\linewidth}
@@ -95,6 +114,18 @@ Activate code diagnostics
 \end{columns}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{2b. How to best setup \r\ \& RStudio?}
+Want to have a go at Github copilot?
+\begin{columns}
+\column{\linewidth}
+\begin{center}
+If you must, better not show Copilot suggestions automatically
+\includegraphics[height=0.7\textheight]{figures/RStudio_settings_copilot.png}
+\end{center}
+\end{columns}
+\end{frame}
+
 
 \section{How to best organise your work?}
 
@@ -103,24 +134,43 @@ Activate code diagnostics
 Before you start some new work in \r,
   \begin{enumerate}
     \item create a new RStudio project (Menu / File / New Project... / \dots)
-    \item create a new \r \ Script file (Menu / File / New File / R Script)
-    \item save the created \r \ Script file into the project folder directory
+    \item create a new \r \ script file (Menu / File / New File / R Script)
+    \item save the created \r \ script file into the project folder directory
   \end{enumerate}
 \vfill
 \textbf{NB:}
 \begin{itemize}
 \item an RStudio project is a folder containing the different files for a given project, including a simple project file that allows you to open RStudio with the correct working directory set
-\item an \r \ Script is a (text) file where you can write \r \ code
-\item alternatives to \r \ Scripts exist to implement your work if you need to format text around your code (e.g. \r \ Markdown files)
+\item an \r \ script is a (text) file where you can write \r \ code\\
+\end{itemize}
+\vfill
+{\footnotesize Note: alternatives to \r \ scripts exist to implement your work if you need to format text around your code (e.g. Quarto files: \url{https://quarto.org/docs/computations/r.html})}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\selectmanualcolour{red!75!black}
+\begin{frame}[fragile]{Practice}
+  \begin{enumerate}
+    \item create a new project
+    \item create a new \r \ Script file
+    \item save the created \r \ Script file into the project folder directory
+    \item have a look at the RStudio cheatsheet
+  \end{enumerate}
+\vfill
+\textbf{NB:}
+\begin{itemize}
+\item a project is defined by a simple (text) file. Its main benefit is to open RStudio with the correct working directory set (that is, the one where the project file is)
+\item an \r \ Script file is a (text) file where we can write \r \ code
 \end{itemize}
 \end{frame}
+\selectmanualcolour{blue!75!black}%set main colour
 
 
 \section{How to write reproductible code?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{4. How to write reproductible code?}
-Best practice:
+Best (simple) practice:
 \vspace{1em}
 \begin{enumerate}
 \item only use the \texttt{Console} pane to mess around
@@ -128,11 +178,11 @@ Best practice:
 \item comment thoroughly your \r \ script using \# signs
 \item re-run frequently your entire script to make sure that it works\\
 (after restarting the session: Menu / Session / Restart R)
-\item write down the version of the packages you are using as comments
+\item avoid relying on too many packages, especially if they are not stable
+\item write down the output of \texttt{sessionInfo()} as comment to document the version of the packages you use
 \end{enumerate}
-\begin{center}
-\includegraphics[height = 4cm]{figures/rstudio_2020.png}
-\end{center}
+\vfill
+{\footnotesize Note: more efficient methods exist to make your code reproducible. Full reproducibility is hardly ever quite possible in practice, so the best tool for you depends on where you want to stand along the trade-off between light weight less reproducible solutions (e.g. package Renv), or heavier more reproducible solution (e.g. rocker containers). My personal approach is often to create an R package dedicated to the project.}
 \end{frame}
 
 
@@ -170,7 +220,7 @@ Inf/Inf
 \vspace{1em}
 As for most other programming languages, avoid equality tests for floating-point numbers!
 <<logic4>>=
-0.8 - 0.3 - 0.5 == 0.8 - 0.5 - 0.3 ## some functions should be used instead
+0.8 - 0.3 - 0.5 == 0.8 - 0.5 - 0.3 ## would be TRUE in an ideal world
 @
 \end{frame}
 
@@ -220,7 +270,7 @@ one_plus_one_plus_one
 \begin{itemize}
 \item \verb+->+ works too (if you switch the left hand side and the right hand side)
 \item ``\texttt{\_}'' and ``\texttt{.}'' are OK but avoid spaces \& other weird characters in names
-\item names are case sensitive
+\item names are CaSe sensITIVE
 \end{itemize}
 \end{frame}
 
@@ -250,7 +300,7 @@ cv_x
 round(x = cv_x, digits = 2)
 @
 \vfill
-Note: all what is written in red above are functions
+{\footnotesize Note: all the red words are functions}
 \end{frame}
 
 
@@ -331,7 +381,7 @@ Here the implementation from Example 1 is easier to read, but this is not always
 \item binary R files (\texttt{*.rda}, \texttt{*.RData}, \texttt{*.rds}) $\rightarrow$ no pkg
 \end{itemize}
 \vspace{1em}
-For importing data you can often simply rely on the GUI\\ {\scriptsize (but for reproducibility do copy and paste the \r \ code automatically generated into your script!)}:
+For importing data you can often simply rely on the GUI:\\ {\scriptsize (but for reproducibility do copy and paste the \r \ code automatically generated into your script)}
 \begin{center}
 \includegraphics[height = 5cm]{figures/RStudio_readr.png}
 \end{center}
@@ -458,7 +508,7 @@ Simple installation (once per \r\ installation):
 \vspace{1em}
 \pause
 Loading (once per session):
-<<results="hide", message=FALSE>>=
+<<load dplyr, results="hide", message=FALSE>>=
 library(dplyr)
 @
 \end{frame}
@@ -468,14 +518,13 @@ library(dplyr)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile, t]{15. How to use \texttt{\{dplyr\}} for an efficient manipulation of data frames?}
-You can all kind of data manipulation by combining 5 simple functions from \texttt{\{dplyr\}}:\\
+You can all kind of data manipulation by combining 4 simple functions from \texttt{\{dplyr\}}:\\
 \vspace{1em}
 \begin{itemize}
 \item \texttt{select()}    to keep or discard columns
-\item \texttt{group\_by()} to define groups of rows for the following verbs
 \item \texttt{filter()}    to keep or discard rows
 \item \texttt{mutate()}    to create new columns
-\item \texttt{summarise()} to compute summary statistics
+\item \texttt{summarise()} to compute summary statistics per group (defined using \texttt{.by = \dots})
 \end{itemize}
 \vspace{1em}
 \pause
@@ -484,9 +533,9 @@ Example:
 calibration |>
   filter(site != "A") |>
   mutate(y.tissue.not.permil = y.tissue / 1000) |>
-  group_by(site) |>
-  summarize(mean_per_site = mean(y.tissue.not.permil))
+  summarize(mean_per_site = mean(y.tissue.not.permil), .by = site)
 @
+
 \end{frame}
 
 
@@ -523,7 +572,13 @@ ggplot(data = calibration,
   geom_point()
 @
 \end{columns}
-Whatever you are using, plotting your data is very important! Defaults are always quite ugly!!
+\begin{footnotesize}
+Notes:
+\begin{itemize}
+\item whatever you are using, plotting your data is very important
+\item defaults are always quite ugly
+\end{itemize}
+\end{footnotesize}
 \end{frame}
 
 
@@ -549,7 +604,7 @@ ggplot(calibration) +
   theme_minimal()
 @
 \vfill
-\textbf{Note:} check \url{https://www.r-graph-gallery.com} for examples
+{\footnotesize Note: check \url{https://www.r-graph-gallery.com} for examples}
 \end{frame}
 
 
@@ -559,8 +614,8 @@ ggplot(calibration) +
 \begin{frame}[fragile]{18. When to update what?}
 Update:
 \begin{itemize}
-\item \r\ (at least once a year)
-\item RStudio (after each update of \r)
+\item \r\ (at least once a year after the big new release in spring)
+\item RStudio (at least after each update of \r)
 \item packages (at least once a month)
 \end{itemize}
 \vspace{1em}
@@ -631,8 +686,9 @@ There are many resources available at your disposal:
 \begin{frame}{20. How to reach levels beyond B1?}
 This is not beyond your reach!
 \begin{itemize}
+\item give AI and stackoverflow a break (at least no more hopeful copy/pasting)
 \item try to help less advanced colleagues
-\item look at the code of more advanced \r\ geeks
+\item look at the code of more advanced \r\ geeks (GitHub is a good source)
 \item act as a scientist: once you know some basics, if you notice something that does not behave as you thought it should, make hypotheses and test them
 \item try to contribute to collaborative \r\ projects (e.g. on GitHub)
 \end{itemize}
