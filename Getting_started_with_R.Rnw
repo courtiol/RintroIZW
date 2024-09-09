@@ -14,7 +14,7 @@
 
 \def\r{{\bf R}}
 
-\title[R intro course for summer school on isotopes]{20 Things to Know About \r \ \& a couple of things to know about stats}
+\title[R intro course for summer school on isotopes]{20 things to know about \r \ \& a couple of things to know about stats}
 \author[Alex | \url{www.datazoogang.de}]{Alexandre Courtiol}
 \institute[]{Leibniz Institute of Zoo and Wildlife Research}%
 \titlegraphic{
@@ -49,27 +49,29 @@ opts_chunk$set(size = "scriptsize",
 \titlepage
 \end{frame}
 
+\part{R}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[t]{Poll}
 How would you rate your \r-language proficiency, from A0 to C2?
-
-\begin{footnotesize}
+\vspace{1em}
+\begin{small}
 \begin{itemize}
-\item \textbf{A0}\\ no experience of \r \ what-so-ever
-\item \textbf{A1}\\ read a well coded \r\ script and understand the main ideas
-\item \textbf{A2}\\ use RStudio, import data, do simple clean-up tasks \& simple plots\\ (with heavy help from stackoverflow or chatGPT)
-\item \textbf{B1}\\ no longer get stuck with typos, code simple functions, produce rmarkdown or quarto reports, use most core \texttt{tidyverse} packages with ease, some knowledge of base \r
-\item \textbf{B2}\\ code complex functions, create simple packages, understand how to use new packages quickly, solid knowledge of base \r
-\item \textbf{C1}\\ write elegant \& efficient code, supervise the development of large packages, code functions tackling scoping difficulties, code bottlenecks in other languages\dots
-\item \textbf{C2}\\ able to help C1-level people in a variety of tricky circumstances
+\item \textbf{A0} no experience of \r \ what-so-ever
+\item \textbf{A1} read a well coded \r\ script and understand the main ideas
+\item \textbf{A2} use RStudio, import data, do simple clean-up tasks \& simple plots\\ (with heavy help from stackoverflow or chatGPT)
+\item \textbf{B1} no longer get stuck with typos, code simple functions, produce rmarkdown or quarto reports, use most core \texttt{tidyverse} packages with ease, some knowledge of base \r
+\item \textbf{B2} code complex functions, create simple packages, understand how to use new packages quickly, solid knowledge of base \r
+\item \textbf{C1} write elegant \& efficient code, supervise the development of large packages, code functions tackling scoping difficulties, code bottlenecks in other languages\dots
+\item \textbf{C2} able to help C1-level people in a variety of tricky circumstances
 \end{itemize}
-\end{footnotesize}
+\end{small}
 
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{20 Things to Know About \r}
+\begin{frame}[t]{20 things to know about \r}
   \setcounter{tocdepth}{1}
   \begin{scriptsize}
   \tableofcontents
@@ -89,6 +91,7 @@ Why learning \r?
 \item open source and free
 \end{itemize}
 \vfill
+\pause
 RStudio is a GUI to \r\ that is fancier and more modern than the one provided by default
 \vfill
 {\footnotesize Note: RStudio is currently loosing ground against Visual Studio Code among geeks, but Posit is fighting back by developing Positron}
@@ -98,7 +101,7 @@ RStudio is a GUI to \r\ that is fancier and more modern than the one provided by
 \section{How to best setup \r\ \& RStudio?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{2a. How to best setup \r\ \& RStudio?}
+\begin{frame}[t, fragile]{2a. How to best setup \r\ \& RStudio?}
 Open: Menu / Tools / Global options and set things as follows:
 \begin{columns}
 \column{0.5\linewidth}
@@ -115,7 +118,7 @@ Activate code diagnostics
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{2b. How to best setup \r\ \& RStudio?}
+\begin{frame}[t, fragile]{2b. How to best setup \r\ \& RStudio?}
 Want to have a go at Github copilot?
 \begin{columns}
 \column{\linewidth}
@@ -130,13 +133,14 @@ If you must, better not show Copilot suggestions automatically
 \section{How to best organise your work?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{3. How to best organise your work?}
+\begin{frame}[t, fragile]{3. How to best organise your work?}
 Before you start some new work in \r,
-  \begin{enumerate}
-    \item create a new RStudio project (Menu / File / New Project... / \dots)
-    \item create a new \r \ script file (Menu / File / New File / R Script)
-    \item save the created \r \ script file into the project folder directory
-  \end{enumerate}
+\vspace{1em}
+\begin{enumerate}
+  \item create a new RStudio project (Menu / File / New Project... / \dots)
+  \item create a new \r \ script file (Menu / File / New File / R Script)
+  \item save the created \r \ script file into the project folder directory
+\end{enumerate}
 \vfill
 \textbf{NB:}
 \begin{itemize}
@@ -149,7 +153,7 @@ Before you start some new work in \r,
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \selectmanualcolour{red!75!black}
-\begin{frame}[fragile]{Practice}
+\begin{frame}[t, fragile]{Practice}
   \begin{enumerate}
     \item create a new project
     \item create a new \r \ Script file
@@ -169,7 +173,7 @@ Before you start some new work in \r,
 \section{How to write reproductible code?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{4. How to write reproductible code?}
+\begin{frame}[t, fragile]{4. How to write reproductible code?}
 Best (simple) practice:
 \vspace{1em}
 \begin{enumerate}
@@ -189,7 +193,7 @@ Best (simple) practice:
 \section{How to use \r\ as a simple calculator?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{5. How to use \r\ as a simple calculator?}
+\begin{frame}[t, fragile]{5. How to use \r\ as a simple calculator?}
 \begin{columns}[T]
 \column{0.5\linewidth}
 \r \ can perform basic arithmetic:
@@ -227,7 +231,7 @@ As for most other programming languages, avoid equality tests for floating-point
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \selectmanualcolour{red!75!black}
-\begin{frame}[fragile]{Practice}
+\begin{frame}[t, fragile]{Practice}
 \vfill
 \begin{center}
 \begin{Huge}
@@ -243,7 +247,7 @@ NB: {\large $\sqrt{x} = x^\frac{1}{2}$}
 \section{How to store the results of operations?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{6. How to store the results of operations?}
+\begin{frame}[t, fragile]{6. How to store the results of operations?}
 The results of operations are stored into \emph{objects} that are created using the ``arrow'' assignment operator:
 <<one plus one>>=
 one_plus_one <- 1 + 1 ## storing the result
@@ -278,7 +282,7 @@ one_plus_one_plus_one
 \section{How to do things beyond simple algebra?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{7. How to do things beyond simple algebra?}
+\begin{frame}[t, fragile]{7. How to do things beyond simple algebra?}
 For doing more complex things, one has to use \emph{functions}:
 \vspace{1em}
 <<using functions>>=
@@ -307,7 +311,7 @@ round(x = cv_x, digits = 2)
 \section{How to use a new function?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{8. How to use a new function?}
+\begin{frame}[t, fragile]{8. How to use a new function?}
 Before using a new function, it is a good idea to check its documentation:
 \vspace{1em}
 <<eval=F, echo=T>>=
@@ -342,7 +346,7 @@ Arguments:
 \section{How to decipher complex function calls?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{9. How to decipher complex function calls?}
+\begin{frame}[t, fragile]{9. How to decipher complex function calls?}
 In \r, it is easy to write synonymous code that \emph{looks} very different:
 \vspace{1em}
 
@@ -373,7 +377,7 @@ Here the implementation from Example 1 is easier to read, but this is not always
 \section{How to import data in \r?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{10. How to import data in \r?}
+\begin{frame}[t, fragile]{10. How to import data in \r?}
 \r \ can read (and write) many formats storing data, such as:
 \begin{itemize}
 \item tabulated text files (\texttt{*.csv}, \texttt{*.txt}, \dots) $\rightarrow$ no pkg or \verb`{readr}`
@@ -386,6 +390,20 @@ For importing data you can often simply rely on the GUI:\\ {\scriptsize (but for
 \includegraphics[height = 5cm]{figures/RStudio_readr.png}
 \end{center}
 \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\selectmanualcolour{red!75!black}
+\begin{frame}[fragile]{Practice}
+\begin{center}
+\begin{large}
+Import some of your data into \r!
+\end{large}
+\end{center}
+\vfill
+Note: if you don't have data, just create a data frame using your favorite spreadsheet software
+\end{frame}
+\selectmanualcolour{blue!75!black}
 
 
 \section{How to manipulate data frames?}
@@ -431,8 +449,9 @@ calibration
 \section{How to manipulate lists?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{12. How to manipulate lists?}
-Most functions doing something more complicated than simple arithmetic produce lists:\\
+\begin{frame}[t, fragile]{12. How to manipulate lists?}
+Most functions doing something more complicated than simple arithmetic produce lists
+\vspace{1em}
 <<>>=
 calib2sp <- calibration[calibration$site %in% c("A", "C"), ]
 test_calib2sp <- t.test(y.tissue ~ site, data = calib2sp)
@@ -449,9 +468,11 @@ You can extract named elements from lists as vectors in data frames:
 <<>>=
 test_calib2sp$p.value
 @
-\vspace{5em}
+\vspace{1em}
+\pause
 You can extract elements from lists (named or not) using indexes too:
 <<>>=
+test_calib2sp[["p.value"]]
 test_calib2sp[[3]]
 @
 \end{columns}
@@ -461,7 +482,7 @@ test_calib2sp[[3]]
 \section{How to manipulate vectors?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{13. How to manipulate vectors?}
+\begin{frame}[t, fragile]{13. How to manipulate vectors?}
 You can replace elements:
 <<vec0>>=
 calibration$y.tissue[1] <- NA ## change is saved!
@@ -491,7 +512,7 @@ calibration$y.tissue[-2]
 \section{How to use packages?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{14. How to use packages?}
+\begin{frame}[t, fragile]{14. How to use packages?}
 
 Packages extend \r \ functionalities:
 \begin{itemize}
@@ -542,7 +563,7 @@ calibration |>
 \section{How to plot things?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{16. How to plot things?}
+\begin{frame}[t, fragile]{16. How to plot things?}
 There are many plotting systems in \r, such as:
 \vspace{1em}
 \begin{itemize}
@@ -593,11 +614,12 @@ All plots are composed of the same elements:\\
 (the first 3 are mandatory, the last 4 are not since they have default presets)\\
 \end{scriptsize}
 \vspace{1em}
+\pause
 We then build a plot by adding such components together:\\
 \vspace{1em}
 <<layer_multiples_layers, out.width = "0.3\\linewidth", out.height = "0.2\\linewidth", warning = FALSE, size = "tiny">>=
 ggplot(calibration) +
-  aes(x = lat, y = y.tissue, colour = site) +
+  aes(x = lat, y = y.tissue, colour = site) + ## note: this can be integrated in the previous line
   geom_point() +
   geom_rug(sides = "l") + ## l for left!
   scale_x_continuous("Lattitude") +
@@ -611,15 +633,15 @@ ggplot(calibration) +
 \section{When to update what?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{18. When to update what?}
+\begin{frame}[t, fragile]{18. When to update what?}
 Update:
+\vspace{1em}
 \begin{itemize}
 \item \r\ (at least once a year after the big new release in spring)
 \item RStudio (at least after each update of \r)
 \item packages (at least once a month)
 \end{itemize}
 \vspace{1em}
-For packages:
 \begin{center}
 \includegraphics[height=0.6\textheight]{figures/RStudio_packages_update.png}
 \end{center}
@@ -631,7 +653,7 @@ For packages:
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{19. How to reach the level A2/B1?}
+\begin{frame}[t]{19. How to reach the level A2/B1?}
 There are many resources available at your disposal:
 \begin{columns}
 \column{0.6\linewidth}
@@ -641,7 +663,7 @@ There are many resources available at your disposal:
 \vfill
 \item Official documentation (help files + \url{https://cran.r-project.org/manuals.html})
 \vfill
-\item Books (not always free):
+\item<2> Books (not always free):
 \end{itemize}
 \column{0.3\linewidth}
 \begin{center}
@@ -649,6 +671,7 @@ There are many resources available at your disposal:
 \end{center}
 \end{columns}
 \begin{center}
+\uncover<2>{
 \begin{figure}
 \begin{subfigure}[b]{2.4cm}
 \centering
@@ -676,6 +699,7 @@ There are many resources available at your disposal:
 \caption*{$\sim 60$ \euro}
 \end{subfigure}
 \end{figure}
+}
 \end{center}
 \end{frame}
 
@@ -683,8 +707,9 @@ There are many resources available at your disposal:
 \section{How to reach levels beyond B1?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{20. How to reach levels beyond B1?}
+\begin{frame}[t]{20. How to reach levels beyond B1?}
 This is not beyond your reach!
+\vspace{1em}
 \begin{itemize}
 \item give AI and stackoverflow a break (at least no more hopeful copy/pasting)
 \item try to help less advanced colleagues
@@ -693,7 +718,217 @@ This is not beyond your reach!
 \item try to contribute to collaborative \r\ projects (e.g. on GitHub)
 \end{itemize}
 \vfill
-If you persist, you will become very good at \r\ no matter how difficult you may find it now!
+If you persist, you will become good at \r\ no matter how difficult you may find it now!
+\end{frame}
+
+\part{Stats}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{2 things to know about stats}
+  \setcounter{tocdepth}{1}
+  \begin{scriptsize}
+  \tableofcontents
+  \end{scriptsize}
+\end{frame}
+
+\section{What are linear models?}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{21a. What are linear models?}
+Linear models are underlying many analyses performed on stable isotopes\\
+\vspace{1em}
+This includes:
+\begin{itemize}
+\item local meteoric water lines
+\item isoscapes
+\item mixing analyses
+\end{itemize}
+\vfill
+\pause
+It applies to cases when a response variable is approximated by a weighted sum of predictor variables\\
+\vfill
+{\footnotesize Note: t-tests / F-tests / anovas / ancovas / linear regressions (LM) / multiple linear regressions / generalized linear models (GLM) / mixed-effects models (GLMM) / hieararchical linear models / multilevel models / logistic regressions / polynomial regressions / probit models / \dots \ can all be expressed using the unifying framework of linear models}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{21b. What are linear models?}
+A linear model is nothing but a sum!
+$$ y_i = \widehat{\alpha} + \widehat{\beta_1} \times x_{1i} + \widehat{\beta_2} \times x_{2i} + \dots + \widehat{\beta_p} \times x_{pi} + \varepsilon_i $$
+\vfill
+\pause
+You know:
+\begin{itemize}
+\item $y_i$ = the value of the response variable for the individual $i$
+\item $x_{ki}$ = the value of the predictor variable $k$ for $i$
+\end{itemize}
+\vfill
+\pause
+You want estimation (hence the $\widehat{\mathrm{hats}}$) of:
+\begin{itemize}
+\item $\alpha$ = the intercept, i.e. the average value of $y$ when all $x$ are zero
+\item $\beta$  = regression coefficients which relate the $x$ to the $y$
+\end{itemize}
+\vfill
+\pause
+You wish:
+\begin{itemize}
+\item $\varepsilon_i$ (= $y_i - \widehat{y_i}$), the errors on predictions or residuals, to be small
+\end{itemize}
+\vfill
+\pause
+The function fitting the model does:
+\begin{itemize}
+\item estimate the parameters which maximize the likelihood, i.e. the probability to observe the data given a set of assumptions fully describing a statistical model
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile, t]{21c. What are linear models?}
+The simple example of the local meteoric water line:
+$\delta\ ^2\textrm{H}_i = \widehat{\alpha} + \widehat{\beta} \times \delta\ ^{18}\textrm{O}_i + \varepsilon_i$
+\begin{columns}[t]
+\column{0.5\linewidth}
+<<saskatoon>>=
+dataLMWL <- na.omit(read.csv("data/saskatoon.csv"))
+head(dataLMWL)
+dim(dataLMWL)
+@
+\pause
+<<saskatoon_lm>>=
+fitLMWL <- lm(DEU ~ O18, data = dataLMWL)
+fitLMWL
+@
+\pause
+\column{0.5\linewidth}
+<<saskatoon_plot, out.width = "0.75\\linewidth">>=
+ggplot(dataLMWL, aes(x = O18, y = DEU)) +
+  geom_abline(
+    intercept = coef(fitLMWL)[["(Intercept)"]],
+    slope = coef(fitLMWL)[["O18"]]
+    ) +
+  geom_point() +
+  labs(x = expression(paste(delta^18,"O")),
+       y = expression(paste(delta^2,"H"))) +
+  xlim(NA, 0) + ylim(NA, 0) + theme_minimal()
+@
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{21d. What are linear models?}
+The more complex example of the isoscape $\rightarrow$ detailed on Thursday!
+\vspace{1em}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/IsoriX_Figure1_medium_resolution.png}
+\end{center}
+\end{frame}
+
+\section{What are Bayesian statistics?}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{22a. What are Bayesian statistics?}
+
+Bayesian statistics have the same general goal as non-Bayesian statistics (called frequentist statistics), but they provide estimates which maximize the probability to observe a given statistical model given a set of data:
+
+$$P(\theta|\textbf{D}) = \frac{1}{P(\textbf{D})} \times P(\theta) \times P(\textbf{D} |\theta)$$
+
+where:
+
+\begin{itemize}
+\item $\theta$ = model parameters
+\item $\textbf{D}$ = data
+\item $P(\theta|\textbf{D})$ = posterior
+\item $P(\textbf{D})$ = a uninteresting constant
+\item $P(\theta)$ = prior
+\item $P(\textbf{D} |\theta)$ = likelihood
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{22b. What are Bayesian statistics?}
+Psychologically, Bayesian statistics look better!
+\vfill
+BUT the posterior still depends on the likelihood and we add the complexity of the prior
+\vfill
+\pause
+So when it is better to rely on Bayesian statistics? $\rightarrow$ when you have reliable prior
+\vfill
+\pause
+BUT this is rare in our fields, so the true and more practical reason of relying on Bayesian statistics is that complex statistical problems (e.g. hierarchical models) make the analytical formulation of the likelihood function difficult or impossible
+\vfill
+In these cases, one must use stochastic optimization methods (key-words: Gibbs, Metropolis, MCMC\dots) that approximate the likelihood (or something proportional to it) numerically rather than doing math
+\vfill
+Doing so necessarily requires priors and the prior may influence results, so a Bayesian wrapping save appearances...
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile, t]{22c. What are Bayesian statistics?}
+The simple example of the local meteoric water line:
+$\delta\ ^2\textrm{H}_i = \widehat{\alpha} + \widehat{\beta} \times \delta\ ^{18}\textrm{O}_i + \varepsilon_i$
+\begin{columns}[T]
+\column{0.5\linewidth}
+<<jags_def, results="hide", message=FALSE>>=
+library(rjags)
+data <- list(DEU = dataLMWL$DEU, O18 = dataLMWL$O18,
+             N = nrow(dataLMWL))
+modelLMWL <- "model {
+  ## define the model
+  for (i in 1:N) {
+      DEU[i] ~ dnorm(mu[i], sdresid)        
+      mu[i] <- alpha + beta*O18[i]
+      }
+  ## set initial values and prior distrib.
+  alpha ~ dnorm(0, 0.00001)
+  beta ~ dnorm(0, 0.00001)
+  sdresid <- pow(varresid, -2)
+  varresid ~ dgamma(0.001, 0.001)}"
+params <- c("alpha", "beta")
+set.seed(123) ## "fix" stochasticity
+jagsLMWL <- jags.model(
+  file = textConnection(modelLMWL),
+  data = data, n.adapt = 100)
+chain_estimates <- coda.samples(
+  model = jagsLMWL, variable.names = params,
+  n.iter = 10000, thin = 5)[[1]]
+@
+\column{0.5\linewidth}
+\pause
+Comparison Bayesian vs frequentist inference:\\
+\vspace{1em}
+{\footnotesize Point estimates}
+<<point_estimates>>=
+apply(chain_estimates, 2, mean) ## jags
+coef(fitLMWL) ## lm()
+@
+\vspace{1em}
+\pause
+{\footnotesize Uncertainty}
+<<intervals>>=
+apply(chain_estimates, 2, quantile,
+      p = c(0.025, 0.975)) ## credibility intervals
+t(confint(fitLMWL)) ## confidence intervals
+@
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile, t]{22d. What are Bayesian statistics?}
+The simple example of the local meteoric water line:
+$\delta\ ^2\textrm{H}_i = \widehat{\alpha} + \widehat{\beta} \times \delta\ ^{18}\textrm{O}_i + \varepsilon_i$
+\vfill
+<<plot_jags, out.width = "\\linewidth", fig.width=10, fig.asp=0.4>>=
+plot(chain_estimates[, "beta"])
+@
+\vfill
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\begin{Huge}
+Questions?
+\end{Huge}
+\end{center}
 \end{frame}
 
 \end{document}
