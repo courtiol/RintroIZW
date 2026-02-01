@@ -4,6 +4,7 @@
 \usepackage{amsmath,amssymb,lmodern} % nice T1 compatible fonts
 \usepackage[UKenglish]{babel}
 \usepackage{pdfpages} % to import pdf pages
+\usepackage{upquote} % for backtick within verbatim
 \usepackage{ragged2e} % pour justifier le text, après il suffit de tapper \justifying avant le paragraphe
 \usepackage{subcaption} % for captions below figures
 \usepackage{eurosym} % for euro sign
@@ -24,7 +25,7 @@
 \hspace{2cm}
 \includegraphics[height=2cm]{figures/FU}
 }
-\date[February 2024]{\small February 2024}%
+\date[February 2026]{\small February 2026}%
 
 \begin{document}
 \selectmanualcolour{blue!75!black}%set main colour
@@ -89,7 +90,7 @@ Key points (general):
 \item open (\url{https://github.com/wch/r-source})
 \item honest (\url{https://bugs.r-project.org/bugzilla})
 \item scalable (laptop/supercomputer; local/remote; Windows/MacOS/Linux/Unix)
-\item rich\\ (\url{https://rdrr.io}; \url{https://www.rdocumentation.org}; \url{https://r-universe.dev})
+\item rich (\url{https://rdrr.io};\url{https://r-universe.dev}) %\url{https://www.rdocumentation.org}
 \item up to date (\url{https://dirk.eddelbuettel.com/cranberries/cran/updated})
 \item friendly community (more on that later)
 \end{itemize}
@@ -143,6 +144,8 @@ Key points (general):
   \item install RStudio: \url{https://posit.co/download/rstudio-desktop/}
   \item open RStudio
   \end{enumerate}
+  \vspace{2cm}
+  If you have an IZW-owned computer, you may have to use the software kiosk instead:\\ \url{https://swkiosk/}
 \end{frame}
 
 
@@ -164,7 +167,7 @@ Key points (general):
 You can use \r \ without RStudio, but RStudio is:
 \begin{itemize}
 \item provided with more functionalities than the official \r \ IDE
-\item integrated with several packages developed by RStudio (e.g. \verb`{readr}`)
+\item integrated with several packages developed by Posit (e.g. \verb`{readr}`)
 \item suitable for both desktop and remote computers (web server) %so it looks the same on a cluster!
 \item free and open source
 \end{itemize}
@@ -196,10 +199,10 @@ You can use \r \ without RStudio, but RStudio is:
     \item \texttt{File $\rightarrow$ Import Dataset}
     \item \texttt{File $\rightarrow$ Save}
     \item \texttt{Edit $\rightarrow$ Undo}
-    \item \texttt{Edit $\rightarrow$ Clear console}
+    \item \texttt{Edit $\rightarrow$ Clear Console}
     \item \texttt{Code $\rightarrow$ Comment/Uncomment Lines}
+    \item \texttt{Session $\rightarrow$ Restart R}
     \item \texttt{Tools $\rightarrow$ Global Options...}
-    \item \texttt{Help $\rightarrow$ Check for Updates} (for updating RStudio, not \r, nor \r \ packages)
     \item \texttt{Help $\rightarrow$ Cheatsheets}
   \end{itemize}
 \end{frame}
@@ -611,7 +614,7 @@ In general, the installation procedure depends on:
 {\bf Tip:} in order to be able to install packages that require compilation (and thus have access to more or newer versions of packages), you need to install:
 
 \begin{itemize}
-\item \texttt{Rtools} if you use Windows (\url{https://cran.r-project.org/bin/windows/Rtools})
+\item \texttt{Rtools} if you use Windows (on the IZW software kiosk, or at \url{https://cran.r-project.org/bin/windows/Rtools})
 \item \texttt{clang} and \texttt{gfortran} (\url{https://cran.r-project.org/bin/macosx/tools})\\ or \texttt{Xcode} (\url{https://developer.apple.com/xcode}) if you use macOS
 \item if you use Linux or Unix-based system, you should already have everything you need
 \end{itemize}
@@ -829,7 +832,7 @@ There are two competing paradigms for manipulating data in \r:
 \item easier for developers
 \item more error prone, but easier to debug
 \item more efficient (often)
-\item dominant paradigm for first generations of \r\ users
+\item dominant paradigm for first generations of \r \ users
 \end{itemize}
 \end{block}
 \pause
@@ -839,7 +842,7 @@ There are two competing paradigms for manipulating data in \r:
 \item easier for users
 \item closer to Excel, SPSS, \dots
 \item \emph{functional programming} friendly
-\item dominant paradigm for new generations of \r\ users
+\item dominant paradigm for last generations of \r \ users
 \end{itemize}
 \end{block}
 \end{columns}
@@ -1121,6 +1124,7 @@ pluck(test, "p.value") # {purrr}
 \begin{itemize}
 \item tabulated text files (\texttt{*.csv}, \texttt{*.txt}, \dots) $\rightarrow$ no pkg or \verb`{readr}`
 \item MS Excel files (\texttt{*.xlsx}) $\rightarrow$ \verb`{readxl}`
+\item Google Sheets $\rightarrow$ \verb`{googlesheets4}`
 \item binary R files (\texttt{*.rda}, \texttt{*.RData}, \texttt{*.rds}) $\rightarrow$ no pkg
 \end{itemize}
 \vspace{1em}
@@ -1454,7 +1458,7 @@ You can use \verb`coord_*()` to modify how graphical elements are projected on a
 ggplot(iris) +
   aes(x = Sepal.Length, y = Sepal.Width, colour = Species) +
   geom_point() + 
-  coord_trans(y = "log10", ylim = c(1.5, 5))
+  coord_transform(y = "log10", ylim = c(1.5, 5))
 @
 \end{frame}
 
@@ -1664,10 +1668,10 @@ RStudio cheatsheets; e.g.:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[t]{Useful resources}
-Official documentation:
 \begin{itemize}
 \item the help files: every single (exported) function has a help file associated with it!
 \item official manuals: \url{https://cran.r-project.org/manuals.html}
+\item online courses: e.g. \url{https://www.coursera.org}, \url{https://www.mondegoscience.com}
 \end{itemize}
 \vfill
 \pause
@@ -1731,7 +1735,7 @@ Journal of Statistical Software, \r \ Journal, Journal of Open Source Software \
 \item \url{https://stackoverflow.com/questions/tagged/r}
 \item \url{https://community.rstudio.com}
 \item \url{https://www.r-bloggers.com}
-\item \url{https://rfordatascience.slack.com}
+\item \url{https://dslc.io}
 \end{scriptsize}
 \end{itemize}
 \vfill
@@ -1761,7 +1765,17 @@ Journal of Statistical Software, \r \ Journal, Journal of Open Source Software \
 \end{scriptsize}
 \end{itemize}
 \item bluesky
+\begin{itemize}
+\begin{scriptsize}
+\item \#rstats
+\end{scriptsize}
+\end{itemize}
 \item LinkedIn
+\begin{itemize}
+\begin{scriptsize}
+\item The R Project for Statistical Computing (group)
+\end{scriptsize}
+\end{itemize}
 \end{itemize}
 \end{columns}
 \end{frame}
