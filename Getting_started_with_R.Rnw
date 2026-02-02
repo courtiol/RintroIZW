@@ -1345,7 +1345,7 @@ Overriding the \verb`geom_*()` default statistic is sometimes useful:\\
 <<layer_ecdf>>=
 ggplot(iris) +
   aes(x = Sepal.Length, colour = Species) +
-  geom_line(stat = "ecdf")
+  geom_step(stat = "ecdf")
 @
 \vfill
 \pause
